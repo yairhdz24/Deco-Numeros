@@ -17,9 +17,11 @@
   width: 46px;
   box-shadow: #222;
   top: 0px;
-  background-image: url("https://www.madraccoonstudio.com/letras/img/cabeza.png"),
-    url("https://www.madraccoonstudio.com/letras/img/cabeza.png");
-  background-size: 30px 30px;
+  /* background-image: url("https://www.madraccoonstudio.com/letras/img/cabeza.png"),
+    url("https://www.madraccoonstudio.com/letras/img/cabeza.png"); */
+background-image: url("./src/assets/images/Tornillo-2.png"),
+    url("./src/assets/images/Tornillo-2.png");
+  background-size: 37px 37px;
   background-position: top center, bottom center;
   background-repeat: no-repeat;
 }
@@ -119,4 +121,3 @@
     background-size: 10px 10px;
   }
 }
-

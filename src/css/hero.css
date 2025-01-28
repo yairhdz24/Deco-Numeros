@@ -1,0 +1,223 @@
+/* Custom Swiper styles */
+.swiper-button-prev,
+.swiper-button-next {
+  color: white !important;
+  background: rgba(255, 255, 255, 0.1);
+  width: 50px !important;
+  height: 50px !important;
+  border-radius: 50%;
+  backdrop-filter: blur(4px);
+}
+
+.swiper-button-prev:after,
+.swiper-button-next:after {
+  font-size: 20px !important;
+}
+
+.swiper-pagination {
+  bottom: 2rem !important;
+}
+
+.swiper-pagination-bullet {
+  background: rgba(255, 255, 255, 0.5) !important;
+  width: 48px !important;
+  height: 4px !important;
+  border-radius: 2px !important;
+  transition: all 0.3s ease;
+}
+
+.swiper-pagination-bullet-active {
+  background: white !important;
+}
+
+/* Hero Text Styles */
+.hero-text {
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+  font-family: "Montserrat", sans-serif;
+  letter-spacing: 0.1em;
+}
+
+/* Custom Navigation Buttons */
+.custom-nav-button {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 10;
+  width: 60px;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 50%;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.custom-nav-button:hover {
+  background: rgba(255, 255, 255, 0.2);
+  border-color: rgba(255, 255, 255, 0.3);
+}
+
+.custom-nav-button.prev {
+  left: 2rem;
+}
+
+.custom-nav-button.next {
+  right: 2rem;
+}
+
+/* Custom Pagination */
+.custom-pagination {
+  position: absolute;
+  bottom: 2rem;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 10;
+  display: flex;
+  gap: 0.5rem;
+}
+
+.custom-pagination .swiper-pagination-bullet {
+  width: 40px;
+  height: 4px;
+  background: rgba(255, 255, 255, 0.3);
+  border-radius: 2px;
+  transition: all 0.3s ease;
+  cursor: pointer;
+  margin: 0;
+}
+
+.custom-pagination .swiper-pagination-bullet-active {
+  background: white;
+  width: 60px;
+}
+
+/* Hero Buttons */
+.hero-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem 2rem;
+  font-size: 1.125rem;
+  font-weight: 500;
+  border-radius: 0.5rem;
+  transition: all 0.3s ease;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.hero-button.primary {
+  background: white;
+  color: #1a1a1a;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.hero-button.primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 8px rgba(0, 0, 0, 0.2);
+}
+
+.hero-button.secondary {
+  background: transparent;
+  color: white;
+  border: 2px solid white;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.hero-button.secondary:hover {
+  background: rgba(255, 255, 255, 0.1);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* Scroll Indicator */
+.scroll-indicator {
+  position: absolute;
+  bottom: 2rem;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  z-index: 10;
+}
+
+.scroll-line {
+  width: 2px;
+  height: 40px;
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 1px;
+  position: relative;
+  overflow: hidden;
+}
+
+.scroll-dot {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 50%;
+  background: white;
+  border-radius: 1px;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 640px) {
+  .swiper-button-prev,
+  .swiper-button-next {
+    width: 40px !important;
+    height: 40px !important;
+  }
+
+  .swiper-pagination-bullet {
+    width: 32px !important;
+    height: 3px !important;
+  }
+  .custom-nav-button {
+    width: 45px;
+    height: 45px;
+  }
+
+  .custom-nav-button.prev {
+    left: 1rem;
+  }
+
+  .custom-nav-button.next {
+    right: 1rem;
+  }
+
+  .custom-pagination .swiper-pagination-bullet {
+    width: 30px;
+    height: 3px;
+  }
+
+  .custom-pagination .swiper-pagination-bullet-active {
+    width: 45px;
+  }
+
+  .hero-button {
+    padding: 0.875rem 1.5rem;
+    font-size: 1rem;
+  }
+}
+
+/* Swiper Fade Effect Enhancement */
+.swiper-fade .swiper-slide {
+  transition-property: opacity;
+  transition-duration: 1s !important;
+}
+
+/* Add blur to background image */
+.hero-swiper::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  backdrop-filter: blur(8px);
+  z-index: 1;
+}
+
