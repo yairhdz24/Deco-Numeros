@@ -1,0 +1,170 @@
+@import url("https://fonts.googleapis.com/css2?family=Lato:wght@400;700&display=swap");
+
+/* Estilos base para las placas */
+.placa1,
+.placa2 {
+  position: relative;
+  padding: 5px 25px;
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05), 9px 10px 5px -6px
+    rgba(0, 0, 0, 0.75);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.placa1:hover,
+.placa2:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 15px 20px -3px rgba(0, 0, 0, 0.2), 0 6px 8px -2px rgba(0, 0, 0, 0.1), 12px 15px 8px -6px
+    rgba(0, 0, 0, 0.75);
+}
+
+/* Estilos para los tornillos decorativos */
+.screw-top-left,
+.screw-top-right,
+.screw-bottom-left,
+.screw-bottom-right {
+  position: absolute;
+  width: 24px;
+  height: 24px;
+  background-image: url("https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Dise%C3%B1o%20sin%20t%C3%ADtulo%20(2)-KdQe5YCkckTtnn8ZC5LKqTB88c8anh.png");
+  background-size: contain;
+  background-repeat: no-repeat;
+  z-index: 10;
+  transition: transform 0.3s ease;
+}
+
+.screw-top-left {
+  top: 8px;
+  left: 8px;
+}
+
+.screw-top-right {
+  top: 8px;
+  right: 8px;
+  transform: rotate(90deg);
+}
+
+.screw-bottom-left {
+  bottom: 8px;
+  left: 8px;
+  transform: rotate(-90deg);
+}
+
+.screw-bottom-right {
+  bottom: 8px;
+  right: 8px;
+  transform: rotate(180deg);
+}
+
+/* Efecto hover para los tornillos */
+.placa1:hover .screw-top-left,
+.placa2:hover .screw-top-left {
+  transform: rotate(-45deg);
+}
+
+.placa1:hover .screw-top-right,
+.placa2:hover .screw-top-right {
+  transform: rotate(135deg);
+}
+
+.placa1:hover .screw-bottom-left,
+.placa2:hover .screw-bottom-left {
+  transform: rotate(-135deg);
+}
+
+.placa1:hover .screw-bottom-right,
+.placa2:hover .screw-bottom-right {
+  transform: rotate(225deg);
+}
+
+/* Estilos para el texto 3D */
+.texto3D {
+  font-family: "Lato", sans-serif;
+  text-align: center;
+  text-transform: uppercase;
+  color: #a8a6a6;
+  text-shadow:
+    -1px -1px 1px #efede3,
+    0px 1px 0 #2e2e2e,
+    0px 2px 0 #2c2c2c,
+    0px 3px 0 #2a2a2a,
+    0px 4px 0 #282828,
+    0px 5px 0 #262626,
+    0px 6px 0 #242424,
+    0px 7px 0 #222,
+    2px 10px 5px rgba(0, 0, 0, 0.9),
+    5px 13px 5px rgba(0, 0, 0, 0.3),
+    8px 17px 8px rgba(0, 0, 0, 0.5),
+    8px 18px 35px rgba(0, 0, 0, 0.9);
+}
+
+/* Efecto de texto incrustado */
+.textoInset {
+  font-family: "Lato", sans-serif;
+  text-align: center;
+  text-transform: uppercase;
+  letter-spacing: .15em;
+  background: linear-gradient(145deg, #c0c0c0, #8a8a8a);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  text-shadow: 2px 2px 3px rgba(255, 255, 255, 0.1), -2px -2px 3px rgba(0, 0, 0, 0.5);
+}
+
+/* Efecto de brillo neón */
+.glow {
+  color: #fff;
+  text-align: center;
+  animation: glow 1.5s ease-in-out infinite alternate;
+  filter: drop-shadow(0 0 10px rgba(0, 255, 255, 0.5));
+}
+
+@keyframes glow {
+  from {
+    text-shadow: 0 0 4px #fff, 0 0 8px #fff, 0 0 12px #0ff, 0 0 16px #0ff, 0 0 20px #0ff;
+  }
+  to {
+    text-shadow: 0 0 2px #fff, 0 0 4px #fff, 0 0 6px #0ff, 0 0 8px #0ff, 0 0 10px #0ff;
+  }
+}
+
+/* Ajustes responsivos */
+@media (max-width: 768px) {
+  .texto3D,
+  .textoInset {
+    font-size: 8vw;
+  }
+
+  .screw-top-left,
+  .screw-top-right,
+  .screw-bottom-left,
+  .screw-bottom-right {
+    width: 20px;
+    height: 20px;
+  }
+
+  .placa1,
+  .placa2 {
+    padding: 3px 15px;
+  }
+}
+
+@media (max-width: 480px) {
+  .texto3D,
+  .textoInset {
+    font-size: 10vw;
+  }
+
+  .screw-top-left,
+  .screw-top-right,
+  .screw-bottom-left,
+  .screw-bottom-right {
+    width: 16px;
+    height: 16px;
+  }
+
+  .placa1,
+  .placa2 {
+    padding: 2px 10px;
+  }
+}
+
