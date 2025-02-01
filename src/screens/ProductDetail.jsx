@@ -8,9 +8,9 @@ import "swiper/css/navigation"
 import "swiper/css/pagination"
 import { ShoppingCart, Truck, Star, Gift, ChevronDown } from "lucide-react"
 import toast, { Toaster } from "react-hot-toast"
-import familia from "../assets/images/familiar.webp"
-import familia1 from "../assets/images/familiar1.webp"
-import familia2 from "../assets/images/familiar2.webp"
+// import familia from "../assets/images/familiar.webp"
+// import familia1 from "../assets/images/familiar1.webp"
+// import familia2 from "../assets/images/familiar2.webp"
 
 
 
