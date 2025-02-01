@@ -2,9 +2,9 @@ import React, { useState, useEffect } from "react"
 import { Link } from "react-router-dom"
 import { motion, AnimatePresence } from "framer-motion"
 import { ShoppingCart, Search, Tag, Filter, X } from "lucide-react"
-import moderno from "../assets/images/moderno.jpg"
-import rustico from "../assets/images/rustico.webp"
-import familiar from "../assets/images/familiar.webp"
+// import moderno from "../assets/images/moderno.jpg"
+// import rustico from "../assets/images/rustico.webp"
+// import familiar from "../assets/images/familiar.webp"
 
 // Datos de productos
 const productosData = [
