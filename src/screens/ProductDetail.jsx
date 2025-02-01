@@ -22,9 +22,9 @@ const productosData = [
       "Elegante letrero personalizado para la entrada de tu hogar. Perfecto para dar la bienvenida a tus invitados con un toque personal y sofisticado.",
     precio: 89.99,
     imagenes: [
-      familia,
-      familia1,
-      familia2,
+      // familia,
+      // familia1,
+      // familia2,
     ],
     materiales: ["Madera", "Metal", "Cristal", "Plástico"],
     fuentes: ["Roboto", "Playfair Display", "Montserrat"],
