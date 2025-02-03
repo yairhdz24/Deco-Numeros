@@ -1,30 +1,30 @@
 "use client"
 
-import React, { useEffect, useRef } from "react"
+import { useEffect, useRef } from "react"
 import { motion, useInView, useAnimation } from "framer-motion"
-import { Coffee, CheckCircle, Users, FolderCheck } from "lucide-react"
+import { Coffee, CheckCircle, Users, FolderCheck, Award } from "lucide-react"
 
 const stats = [
   {
-    number: 85,
+    number: 857,
     label: "PROYECTOS",
     sublabel: "COMPLETADOS",
     icon: <FolderCheck className="w-8 h-8" />,
   },
   {
-    number: 127,
+    number: 754,
     label: "CLIENTES",
-    sublabel: "FELICIES",
+    sublabel: "FELICES",
     icon: <Users className="w-8 h-8" />,
   },
   {
-    number: 36,
+    number: 492,
     label: "FELICITACIONES",
     sublabel: "RECIBIDAS",
     icon: <CheckCircle className="w-8 h-8" />,
   },
   {
-    number: 74,
+    number: 203,
     label: "TAZAS",
     sublabel: "DE CAFÉ",
     icon: <Coffee className="w-8 h-8" />,
@@ -50,6 +50,7 @@ const Counter = ({ number, duration }) => {
 
   useEffect(() => {
     if (isInView) {
+      duration =  1000
       const start = 0
       const end = Number.parseInt(number)
       const range = end - start
@@ -87,6 +88,23 @@ const StatsCounter = () => {
   return (
     <section className="py-20 bg-gradient-to-b from-gray-50 to-white">
       <div className="max-w-7xl mx-auto px-6">
+        {/* Title Section */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          className="text-center mb-16"
+        >
+          <div className="flex justify-center mb-4">
+            <div className="p-3 bg-amber-100 rounded-full">
+              <Award className="w-8 h-8 text-amber-600" />
+            </div>
+          </div>
+          <span className="text-amber-600 font-medium mb-2 block">NUESTROS LOGROS</span>
+          <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">Números que Hablan por Sí Mismos</h2>
+          <div className="w-24 h-1 bg-gradient-to-r from-amber-400 to-amber-600 mx-auto rounded-full" />
+        </motion.div>
+
         {/* Desktop Layout */}
         <div className="hidden md:grid grid-cols-4 gap-12">
           {stats.map((stat, index) => (
@@ -118,23 +136,30 @@ const StatsCounter = () => {
           ))}
         </div>
 
-        {/* Mobile Layout */}
-        <div className="md:hidden space-y-12">
+        {/* Enhanced Mobile Layout */}
+        <div className="md:hidden space-y-8">
           {stats.map((stat, index) => (
             <motion.div
               key={index}
-              initial={{ opacity: 0, x: -20 }}
-              whileInView={{ opacity: 1, x: 0 }}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: index * 0.2 }}
-              className="flex items-start space-x-4"
+              className="flex items-center space-x-4"
             >
-              <div className="flex-shrink-0">
+              <motion.div
+                initial={{ scale: 0 }}
+                whileInView={{ scale: 1 }}
+                viewport={{ once: true }}
+                transition={{ delay: index * 0.2 + 0.2, type: "spring" }}
+                className="p-3 rounded-full bg-amber-100 text-amber-500 flex-shrink-0"
+              >
+                {stat.icon}
+              </motion.div>
+              <div>
                 <Counter number={stat.number} duration={2000} />
-              </div>
-              <div className="pt-3">
-                <h3 className="text-xl font-bold text-gray-800 uppercase tracking-wide">{stat.label}</h3>
-                <p className="text-gray-800 font-medium uppercase tracking-wide">{stat.sublabel}</p>
+                <h3 className="text-lg font-bold text-gray-800 uppercase tracking-wide">{stat.label}</h3>
+                <p className="text-amber-600 font-medium uppercase tracking-wide text-sm">{stat.sublabel}</p>
               </div>
             </motion.div>
           ))}

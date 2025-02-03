@@ -1,8 +1,7 @@
 "use client"
 
-import React from "react"
 import { motion } from "framer-motion"
-import { Palette, Shield, Sparkles, Building2, Clock, PenTool, ArrowRight, CheckCircle, Star } from "lucide-react"
+import { Shield, Building2, ArrowRight, Star, Lightbulb, Truck, PenToolIcon as Tool, ThumbsUp } from "lucide-react"
 import { useNavigate } from "react-router-dom"
 
 const QuienesSomos = () => {
@@ -11,24 +10,46 @@ const QuienesSomos = () => {
   const features = [
     {
       icon: Shield,
-      title: "Diseño y Durabilidad",
+      title: "FABRICANTE ESPECIALIZADO",
       description:
-        "Descubre nuestra exclusiva colección de letreros personalizados, diseñados para ofrecer un equilibrio perfecto entre estética y resistencia. Cada pieza es elaborada con materiales de alta calidad para garantizar durabilidad y elegancia.",
-      benefits: ["Materiales Premium", "Acabados Duraderos", "Diseños Exclusivos"],
+        "Más de 25 años fabricando números y letreros de alta calidad con materiales premium, resistentes a la intemperie y aptos para interior y exterior.",
     },
     {
       icon: Building2,
-      title: "Impacto Visual en el Exterior",
+      title: "SEÑALIZACIÓN PROFESIONAL",
       description:
-        "Mejora la imagen de tu negocio con letreros que destacan. Nuestra variedad de estilos y acabados asegura que tu identidad visual refleje profesionalismo y distinción.",
-      benefits: ["Visibilidad Garantizada", "Diseños Profesionales", "Acabados Premium"],
+        "Especialistas en números residenciales, señalizaciones y anuncios luminosos personalizados, con instalación limpia y discreta.",
     },
     {
-      icon: PenTool,
-      title: "Personalización Total",
+      icon: Lightbulb,
+      title: "ILUMINACIÓN LED",
       description:
-        "¡Compra de forma sencilla y rápida! Personaliza tu letrero ideal seleccionando materiales, efectos y tamaño, y obtén un diseño único que se adapte a tu espacio.",
-      benefits: ["Proceso Simple", "Diseños a Medida", "Resultados Únicos"],
+        "Sistemas de iluminación LED de última generación con opciones de luz cálida y neutra, compatibles con 110V y 220V; se puede agregar un timer para programar el encendido/apagado.",
+    },
+  ]
+
+  const guaranteeInfo = [
+    {
+      icon: Truck,
+      title: "Entrega Rápida",
+      description:
+        "5 a 10 días hábiles para pedidos personalizados. Recolección al día siguiente para productos en stock.",
+    },
+    {
+      icon: Shield,
+      title: "Garantía de 1 Año",
+      description:
+        "Cubrimos partes eléctricas por 1 año. No nos responsabilizamos de conexiones mal elaboradas por el usuario.",
+    },
+    {
+      icon: Tool,
+      title: "Materiales de Alta Gama",
+      description: "Fabricados en aluminio o acero, resistentes a cualquier clima. Aptos para interior y exterior.",
+    },
+    {
+      icon: ThumbsUp,
+      title: "Durabilidad Comprobada",
+      description: "Productos con más de 25 años en óptimas condiciones. Calidad que perdura en el tiempo.",
     },
   ]
 
@@ -42,67 +63,63 @@ const QuienesSomos = () => {
           viewport={{ once: true }}
           className="text-center mb-16"
         >
-          <motion.div
-            initial={{ scale: 0 }}
-            whileInView={{ scale: 1 }}
-            viewport={{ once: true }}
-            transition={{ type: "spring", stiffness: 100 }}
-            className="w-16 h-16 mx-auto mb-6 rounded-full bg-gradient-to-r from-amber-400 to-amber-600 flex items-center justify-center"
-          >
-            <Star className="w-8 h-8 text-white" />
-          </motion.div>
-          <span className="text-amber-400 font-medium mb-2 block">¿QUIÉNES SOMOS?</span>
+          <div className="w-20 h-20 mx-auto mb-6 rounded-full bg-gradient-to-r from-amber-400 to-amber-600 flex items-center justify-center">
+            <Star className="w-10 h-10 text-white" />
+          </div>
+          <span className="text-amber-400 font-medium mb-2 block text-lg">QUIÉNES SOMOS</span>
           <h2 className="text-4xl md:text-5xl font-bold mb-4">Expertos en Señalización</h2>
-          <div className="w-24 h-1 bg-gradient-to-r from-amber-400 to-amber-600 mx-auto rounded-full" />
+          <div className="w-32 h-1 bg-gradient-to-r from-amber-400 to-amber-600 mx-auto rounded-full" />
         </motion.div>
 
         {/* Features Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-20">
           {features.map((feature, index) => (
             <motion.div
               key={index}
-              initial={{ opacity: 0, x: index % 2 === 0 ? -20 : 20 }}
-              whileInView={{ opacity: 1, x: 0 }}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: index * 0.2 }}
               className="relative group"
             >
-              <div className="h-full bg-gray-800/50 backdrop-blur-sm rounded-xl p-8 hover:bg-gray-800/70 transition-all duration-300">
-                {/* Icon */}
-                <motion.div
-                  initial={{ scale: 0 }}
-                  whileInView={{ scale: 1 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: index * 0.2 + 0.2, type: "spring" }}
-                  className="w-16 h-16 rounded-full bg-gradient-to-br from-amber-400/20 to-amber-600/20 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300"
-                >
-                  <feature.icon className="w-8 h-8 text-amber-400" />
-                </motion.div>
+              <div className="h-full bg-gray-800/50 backdrop-blur-sm rounded-xl p-8 hover:bg-gray-800/70 transition-all duration-300 shadow-lg">
+                <div className="w-16 h-16 rounded-full bg-gradient-to-br from-amber-400 to-amber-600 flex items-center justify-center mb-6">
+                  <feature.icon className="w-8 h-8 text-white" />
+                </div>
 
-                {/* Content */}
                 <h3 className="text-xl font-bold mb-4 text-white group-hover:text-amber-400 transition-colors duration-300">
                   {feature.title}
                 </h3>
-                <p className="text-gray-300 mb-6 leading-relaxed">{feature.description}</p>
-
-                {/* Benefits */}
-                <ul className="space-y-3">
-                  {feature.benefits.map((benefit, benefitIndex) => (
-                    <li key={benefitIndex} className="flex items-center space-x-3">
-                      <CheckCircle className="w-5 h-5 text-amber-400 flex-shrink-0" />
-                      <span className="text-gray-300">{benefit}</span>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-
-              {/* Decorative corner */}
-              <div className="absolute top-0 right-0 w-20 h-20 overflow-hidden">
-                <div className="absolute transform rotate-45 bg-amber-400/20 text-white text-xs font-bold py-1 right-[-35px] top-[15px] w-[120px]" />
+                <p className="text-gray-300 leading-relaxed">{feature.description}</p>
               </div>
             </motion.div>
           ))}
         </div>
+
+        {/* Guarantee Section */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          className="mb-20"
+        >
+          <h2 className="text-3xl font-bold mb-8 text-center text-white">NUESTRA GARANTÍA Y SERVICIO</h2>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+            {guaranteeInfo.map((item, index) => (
+              <div key={index} className="flex items-start space-x-4 bg-gray-800/30 p-6 rounded-lg shadow-lg">
+                <div className="flex-shrink-0">
+                  <div className="w-12 h-12 rounded-full bg-amber-500 flex items-center justify-center">
+                    <item.icon className="w-6 h-6 text-white" />
+                  </div>
+                </div>
+                <div>
+                  <h3 className="text-xl font-semibold mb-2 text-amber-400">{item.title}</h3>
+                  <p className="text-gray-300">{item.description}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </motion.div>
 
         {/* CTA Section */}
         <motion.div
@@ -113,7 +130,7 @@ const QuienesSomos = () => {
         >
           <button
             onClick={() => navigate("/personalizar")}
-            className="group inline-flex items-center justify-center px-8 py-4 text-lg font-medium text-white bg-gradient-to-r from-amber-500 to-amber-600 rounded-full hover:from-amber-600 hover:to-amber-700 transition-all duration-300 transform hover:scale-105"
+            className="group inline-flex items-center justify-center px-8 py-4 text-lg font-medium text-white bg-gradient-to-r from-amber-500 to-amber-600 rounded-full hover:from-amber-600 hover:to-amber-700 transition-all duration-300 transform hover:scale-105 shadow-lg"
           >
             Cotiza tu Letrero Ahora
             <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform duration-300" />
