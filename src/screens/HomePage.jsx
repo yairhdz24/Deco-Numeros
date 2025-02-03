@@ -1,5 +1,5 @@
+// HomePage.jsx
 "use client"
-
 import React from "react"
 import { motion, AnimatePresence } from "framer-motion"
 import { Link } from "react-router-dom"
@@ -8,7 +8,7 @@ import { Pagination, Autoplay, EffectFade } from "swiper/modules"
 import "swiper/css"
 import "swiper/css/pagination"
 import "swiper/css/effect-fade"
-import { ShoppingCart, ArrowRight, ChevronDown, Palette, Star } from "lucide-react"
+import { ShoppingCart, ArrowRight, ChevronDown, Palette, Shield, Zap, Sun } from "lucide-react"
 import InfiniteBanner from "../components/InfiniteBar"
 import ProductCategories from "./ProductCategories"
 import StatsCounter from "../components/StatsCounter"
@@ -28,6 +28,7 @@ const heroSlides = [
     title: ["DISEÑO ÚNICO, IMPACTO TOTAL"],
     subtitle: ["DALE A TU ESPACIO UN TOQUE EXTRAORDINARIO"],
   },
+  
 ]
 
 const featuredProducts = [
@@ -58,33 +59,6 @@ const featuredProducts = [
     image: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/01-aWsu7hXeDjCEvdLM31CM06HB6YSL7a.png",
     description: "Panel negro con números metálicos",
     style: "Premium",
-  },
-]
-
-const brands = [
-  {
-    id: 1,
-    name: "Chrome",
-    logo: "/path-to-chrome-logo.png",
-    description: "Elegancia moderna con acabados metálicos brillantes",
-  },
-  {
-    id: 2,
-    name: "Bauhaus",
-    logo: "/path-to-bauhaus-logo.png",
-    description: "Diseño funcional inspirado en la escuela Bauhaus",
-  },
-  {
-    id: 3,
-    name: "Gera",
-    logo: "/path-to-gera-logo.png",
-    description: "Innovación en iluminación y diseño contemporáneo",
-  },
-  {
-    id: 4,
-    name: "Bosquino",
-    logo: "/path-to-bosquino-logo.png",
-    description: "Materiales naturales con un toque rústico moderno",
   },
 ]
 
@@ -165,13 +139,13 @@ const HomePage = () => {
                         transition={{ delay: 1.5 }}
                         className="flex flex-col sm:flex-row justify-center gap-4 sm:gap-6 mt-8"
                       >
-                        <Link to="/personalizar" className="hero-button primary group">
+                        {/* {/* <Link to="/personalizar" className="hero-button primary group">
                           <span className="absolute inset-0 bg-gradient-to-r from-amber-400 to-amber-600 rounded-lg" />
                           <span className="relative flex items-center justify-center">
                             <Palette className="mr-2" size={20} />
                             <span className="relative z-10">Personaliza el tuyo</span>
                           </span>
-                        </Link>
+                        </Link> */}
 
                         <Link to="/catalogo" className="hero-button secondary group">
                           <span className="absolute inset-0 border-2 border-white rounded-lg group-hover:border-amber-400 transition-colors" />
@@ -179,7 +153,7 @@ const HomePage = () => {
                             <ShoppingCart className="mr-2 group-hover:translate-x-1 transition-transform" size={20} />
                             <span>Explora nuestro catálogo</span>
                           </span>
-                        </Link>
+                        </Link> 
                       </motion.div>
                     </motion.div>
                   </AnimatePresence>
@@ -201,8 +175,15 @@ const HomePage = () => {
             viewport={{ once: true }}
             className="text-center mb-16"
           >
-            <h2 className="text-4xl md:text-5xl font-bold text-gray-800 mb-4">Nuestros Diseños Destacados</h2>
-            <p className="text-xl text-gray-600">Descubre la elegancia en cada detalle</p>
+             <span className="text-amber-600 font-medium mb-2 block">
+             Nuestros Diseños Destacados
+          </span>
+          <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
+            Descubre la elegancia en cada detalle
+          </h2>
+           <div className="w-24 h-1 bg-gradient-to-r from-amber-400 to-amber-600 mx-auto rounded-full" />
+            {/* <h2 className="text-4xl md:text-5xl font-bold text-gray-800 mb-4">Nuestros Diseños Destacados</h2>
+            <p className="text-xl text-gray-600">Descubre la elegancia en cada detalle</p> */} 
           </motion.div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
@@ -240,22 +221,15 @@ const HomePage = () => {
         </div>
       </section>
 
-      {/* Brand Showcase */}
-      <QuienesSomos />
+      {/* Otras secciones */}
+      {/* <QuienesSomos /> */}
       <BrandShowcase />
-
       {/* <ProductCategories /> */}
-
-      {/* Stats Counter Section */}
       <StatsCounter />
-
-      {/* About Us Section */}
       <AboutUs />
-
       <InfiniteBanner />
     </div>
   )
 }
 
 export default HomePage
-

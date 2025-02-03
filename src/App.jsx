@@ -24,6 +24,8 @@ function App() {
             <Routes>
               <Route path="/" element={<HomePage />} />
               <Route path="/catalogo" element={<ProductCatalog />} />
+              {/* Ruta de personalización; brandName se usa para buscar la configuración */}
+              <Route path="/customize/:brandName" element={<NumberQuoterBrandWrapper />} />
               <Route path="/producto/:id" element={<ProductDetail />} />
               <Route path="/personalizar" element={<CustomSignPage />} />
               <Route path="/carrito" element={<CartPage />} />
@@ -37,5 +39,26 @@ function App() {
     </AppProvider>
   );
 }
+
+
+// Componente wrapper que extrae el parámetro y pasa el logo (si se tiene) y configura la fuente según la marca
+import { useParams } from "react-router-dom";
+import NumberQuoterBrand from './screens/CustomSignPage';
+const brandLogos = {
+  CLASICO: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/chrome-mWL3naAbAIIEiB5KAulyedbhZGEiXu.png",
+  HERA: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Dise%C3%B1o%20sin%20t%C3%ADtulo-WAcTWNM4gWizEORc5Wq9dTEffiQHNy.png",
+  BAOLI_V: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/bhaus-vDDk6zgsjAddtfs4acm5e6ouxDQCHh.png",
+  BAOLI: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/boskino-2CoPUf3i92In7CyFPaCXu8ghGLWGlH.png",
+  CALIFORNIA: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/classic-soQ1MXBRb0tzIROrCWgcSmSzyVw0AI.png",
+};
+
+const NumberQuoterBrandWrapper = () => {
+  const { brandName } = useParams();
+  // Convertir el parámetro a mayúsculas para coincidir con el mapeo
+  const brandKey = brandName?.toUpperCase();
+  const logo = brandLogos[brandKey] || "";
+  return <NumberQuoterBrand brandName={brandKey} brandLogo={logo} />;
+};
+
 
 export default App;
