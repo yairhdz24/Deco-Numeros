@@ -1,12 +1,9 @@
-import React, { useState, useEffect } from "react"
+import { useState, useEffect } from "react"
 import { Link } from "react-router-dom"
 import { motion, AnimatePresence } from "framer-motion"
-import { ShoppingCart, Search, Tag, Filter, X } from "lucide-react"
-// import moderno from "../assets/images/moderno.jpg"
-// import rustico from "../assets/images/rustico.webp"
-// import familiar from "../assets/images/familiar.webp"
+import { Search, Tag, Filter, X, Ruler } from "lucide-react"
 
-// Datos de productos
+// Datos de productos (mantén los datos existentes)
 const productosData = [
   {
     id: 1,
@@ -133,166 +130,168 @@ const ProductCatalog = () => {
   }, [filtros, terminoBusqueda])
 
   return (
-    <div className="container mx-auto px-4 py-8    ">
-      <h1 className="text-4xl font-bold text-[#4A4A4A] mb-8 text-center">Nuestros Letreros Exclusivos</h1>
+    <div className="min-h-screen bg-gradient-to-b from-gray-900 to-gray-800 p-4 md:p-8 ">
+      <div className="max-w-7xl mx-auto mt-10">
+        <h1 className="text-4xl md:text-5xl font-bold text-amber-400 mb-4 text-center">Nuestros Letreros Exclusivos</h1>
 
-      {/* Barra de búsqueda y botón de filtros */}
-      <div className="flex justify-center mb-8">
-        <div className="relative w-full max-w-xl">
-          <input
-            type="text"
-            placeholder="Buscar letreros..."
-            value={terminoBusqueda}
-            onChange={(e) => setTerminoBusqueda(e.target.value)}
-            className="w-full border-2 border-[#8B7D6B] rounded-full pl-12 pr-4 py-2 focus:outline-none focus:border-[#5D4037]"
-          />
-          <Search className="absolute left-4 top-3 text-[#8B7D6B]" size={20} />
-          <button
-            onClick={() => setMostrarFiltros(!mostrarFiltros)}
-            className="absolute right-4 top-2 bg-[#8B7D6B] text-white p-1 rounded-full hover:bg-[#5D4037] transition-colors duration-300"
-          >
-            <Filter size={20} />
-          </button>
+        {/* Barra de búsqueda y botón de filtros */}
+        <div className="flex justify-center mb-8">
+          <div className="relative w-full max-w-xl">
+            <input
+              type="text"
+              placeholder="Buscar letreros..."
+              value={terminoBusqueda}
+              onChange={(e) => setTerminoBusqueda(e.target.value)}
+              className="w-full border-2 border-gray-700 bg-gray-800 text-white rounded-full pl-12 pr-4 py-2 focus:outline-none focus:border-amber-500 focus:ring-2 focus:ring-amber-500"
+            />
+            <Search className="absolute left-4 top-3 text-gray-400" size={20} />
+            <button
+              onClick={() => setMostrarFiltros(!mostrarFiltros)}
+              className="absolute right-4 top-2 bg-amber-500 text-gray-900 p-1 rounded-full hover:bg-amber-600 transition-colors duration-300"
+            >
+              <Filter size={20} />
+            </button>
+          </div>
         </div>
-      </div>
 
-      {/* Panel de filtros */}
-      <AnimatePresence>
-        {mostrarFiltros && (
-          <motion.div
-            initial={{ opacity: 0, height: 0 }}
-            animate={{ opacity: 1, height: "auto" }}
-            exit={{ opacity: 0, height: 0 }}
-            className="bg-white rounded-lg shadow-md p-4 mb-8"
-          >
-            <div className="flex justify-between items-center mb-4">
-              <h2 className="text-xl font-semibold text-[#4A4A4A]">Filtros</h2>
-              <button onClick={() => setMostrarFiltros(false)} className="text-[#8B7D6B] hover:text-[#5D4037]">
-                <X size={20} />
-              </button>
-            </div>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-              <div>
-                <label htmlFor="categoria" className="block text-sm font-medium text-[#4A4A4A] mb-1">
-                  Categoría
-                </label>
-                <select
-                  id="categoria"
-                  value={filtros.categoria}
-                  onChange={(e) => setFiltros({ ...filtros, categoria: e.target.value })}
-                  className="w-full border border-[#8B7D6B] rounded-md px-3 py-2 focus:outline-none focus:border-[#5D4037]"
-                >
-                  <option value="">Todas las Categorías</option>
-                  <option value="Madera">Madera</option>
-                  <option value="Metal">Metal</option>
-                  <option value="Rústico">Rústico</option>
-                  <option value="Moderno">Moderno</option>
-                  <option value="Neón">Neón</option>
-                  <option value="LED">LED</option>
-                  <option value="Artesanal">Artesanal</option>
-                </select>
+        {/* Panel de filtros */}
+        <AnimatePresence>
+          {mostrarFiltros && (
+            <motion.div
+              initial={{ opacity: 0, height: 0 }}
+              animate={{ opacity: 1, height: "auto" }}
+              exit={{ opacity: 0, height: 0 }}
+              className="bg-gray-800 rounded-lg shadow-md p-4 mb-8"
+            >
+              <div className="flex justify-between items-center mb-4">
+                <h2 className="text-xl font-semibold text-white">Filtros</h2>
+                <button onClick={() => setMostrarFiltros(false)} className="text-gray-400 hover:text-white">
+                  <X size={20} />
+                </button>
               </div>
-              <div>
-                <label htmlFor="precio" className="block text-sm font-medium text-[#4A4A4A] mb-1">
-                  Precio Máximo: ${filtros.precioMaximo}
-                </label>
-                <input
-                  type="range"
-                  id="precio"
-                  min="0"
-                  max="500"
-                  value={filtros.precioMaximo}
-                  onChange={(e) => setFiltros({ ...filtros, precioMaximo: Number(e.target.value) })}
-                  className="w-full"
-                />
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div>
+                  <label htmlFor="categoria" className="block text-sm font-medium text-gray-300 mb-1">
+                    Categoría
+                  </label>
+                  <select
+                    id="categoria"
+                    value={filtros.categoria}
+                    onChange={(e) => setFiltros({ ...filtros, categoria: e.target.value })}
+                    className="w-full bg-gray-700 border border-gray-600 text-white rounded-md px-3 py-2 focus:outline-none focus:border-amber-500 focus:ring-2 focus:ring-amber-500"
+                  >
+                    <option value="">Todas las Categorías</option>
+                    <option value="Madera">Madera</option>
+                    <option value="Metal">Metal</option>
+                    <option value="Rústico">Rústico</option>
+                    <option value="Moderno">Moderno</option>
+                    <option value="Neón">Neón</option>
+                    <option value="LED">LED</option>
+                    <option value="Artesanal">Artesanal</option>
+                  </select>
+                </div>
+                <div>
+                  <label htmlFor="precio" className="block text-sm font-medium text-gray-300 mb-1">
+                    Precio Máximo: ${filtros.precioMaximo}
+                  </label>
+                  <input
+                    type="range"
+                    id="precio"
+                    min="0"
+                    max="500"
+                    value={filtros.precioMaximo}
+                    onChange={(e) => setFiltros({ ...filtros, precioMaximo: Number(e.target.value) })}
+                    className="w-full"
+                  />
+                </div>
               </div>
-            </div>
-          </motion.div>
-        )}
-      </AnimatePresence>
+            </motion.div>
+          )}
+        </AnimatePresence>
 
-      {/* Grid de Productos */}
-      <motion.div
-        initial="hidden"
-        animate="visible"
-        variants={{
-          hidden: { opacity: 0 },
-          visible: {
-            opacity: 1,
-            transition: {
-              delayChildren: 0.2,
-              staggerChildren: 0.1,
+        {/* Grid de Productos */}
+        <motion.div
+          initial="hidden"
+          animate="visible"
+          variants={{
+            hidden: { opacity: 0 },
+            visible: {
+              opacity: 1,
+              transition: {
+                delayChildren: 0.2,
+                staggerChildren: 0.1,
+              },
             },
-          },
-        }}
-        className="grid md:grid-cols-2 lg:grid-cols-3 gap-8"
-      >
-        {productos.map((producto) => (
-          <motion.div
-            key={producto.id}
-            variants={{
-              hidden: { opacity: 0, y: 20 },
-              visible: { opacity: 1, y: 0 },
-            }}
-            whileHover={{ scale: 1.03 }}
-            className="bg-white rounded-xl shadow-md overflow-hidden transform transition duration-300 hover:shadow-lg"
-          >
-            <div className="relative">
-              <img
-                src={producto.imagen || "/placeholder.svg"}
-                alt={producto.nombre}
-                className="w-full h-64 object-cover"
-              />
-              <div className="absolute bottom-0 left-0 right-0 bg-black bg-opacity-50 text-white px-4 py-2">
-                <span className="text-2xl font-bold">${producto.precio.toFixed(2)}</span>
-              </div>
-            </div>
-
-            <div className="p-6">
-              <h2 className="text-xl font-semibold mb-2 text-[#4A4A4A]">{producto.nombre}</h2>
-              <p className="text-[#6B6B6B] mb-4 text-sm">{producto.descripcion}</p>
-
-              <div className="flex items-center mb-4">
-                <Tag className="text-[#8B7D6B] mr-2" size={18} />
-                <span className="text-sm font-medium text-[#8B7D6B]">{producto.material}</span>
+          }}
+          className="grid md:grid-cols-2 lg:grid-cols-3 gap-8"
+        >
+          {productos.map((producto) => (
+            <motion.div
+              key={producto.id}
+              variants={{
+                hidden: { opacity: 0, y: 20 },
+                visible: { opacity: 1, y: 0 },
+              }}
+              whileHover={{ scale: 1.03 }}
+              className="bg-gray-800 rounded-xl shadow-md overflow-hidden transform transition duration-300 hover:shadow-lg"
+            >
+              <div className="relative">
+                <img
+                  src={producto.imagen || "/placeholder.svg"}
+                  alt={producto.nombre}
+                  className="w-full h-64 object-cover"
+                />
+                <div className="absolute bottom-0 left-0 right-0 bg-black bg-opacity-50 text-white px-4 py-2">
+                  <span className="text-2xl font-bold">${producto.precio.toFixed(2)}</span>
+                </div>
               </div>
 
-              <div className="flex justify-between items-center">
-                <div className="flex flex-wrap gap-2">
-                  {producto.categorias.map((categoria, index) => (
-                    <span
-                      key={index}
-                      className="bg-[#F0EAE3] text-[#5D4037] text-xs font-semibold px-2.5 py-0.5 rounded"
-                    >
-                      {categoria}
-                    </span>
-                  ))}
+              <div className="p-6">
+                <h2 className="text-xl font-semibold mb-2 text-white">{producto.nombre}</h2>
+                <p className="text-gray-400 mb-4 text-sm">{producto.descripcion}</p>
+
+                <div className="flex items-center mb-4">
+                  <Tag className="text-amber-500 mr-2" size={18} />
+                  <span className="text-sm font-medium text-amber-500">{producto.material}</span>
                 </div>
 
-                <Link
-                  to={`/producto/${producto.id}`}
-                  className="bg-[#8B7D6B] hover:bg-[#5D4037] text-white px-4 py-2 rounded-full flex items-center transition duration-300"
-                >
-                  <ShoppingCart className="mr-2" size={18} />
-                  Ver Detalles
-                </Link>
-              </div>
-            </div>
-          </motion.div>
-        ))}
-      </motion.div>
+                <div className="flex justify-between items-center">
+                  <div className="flex flex-wrap gap-2">
+                    {producto.categorias.map((categoria, index) => (
+                      <span
+                        key={index}
+                        className="bg-gray-700 text-amber-500 text-xs font-semibold px-2.5 py-0.5 rounded"
+                      >
+                        {categoria}
+                      </span>
+                    ))}
+                  </div>
 
-      {productos.length === 0 && (
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 0.5 }}
-          className="text-center py-16 text-[#4A4A4A]"
-        >
-          <p className="text-2xl font-semibold">No se encontraron productos</p>
-          <p className="mt-2">Intenta ajustar tus filtros o términos de búsqueda</p>
+                  <Link
+                    to="/personalizar"
+                    className="bg-amber-500 hover:bg-amber-600 text-gray-900 px-4 py-2 rounded-full flex items-center transition duration-300"
+                  >
+                    <Ruler className="mr-2" size={18} />
+                    Personalizar
+                  </Link>
+                </div>
+              </div>
+            </motion.div>
+          ))}
         </motion.div>
-      )}
+
+        {productos.length === 0 && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.5 }}
+            className="text-center py-16 text-white"
+          >
+            <p className="text-2xl font-semibold">No se encontraron productos</p>
+            <p className="mt-2">Intenta ajustar tus filtros o términos de búsqueda</p>
+          </motion.div>
+        )}
+      </div>
     </div>
   )
 }

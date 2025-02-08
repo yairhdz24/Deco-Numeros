@@ -1,15 +1,16 @@
 "use client"
 
-import React, { useState, useEffect } from "react"
+import { useState, useEffect } from "react"
 import { Link, useLocation } from "react-router-dom"
 import { motion, AnimatePresence } from "framer-motion"
 import { Home, ShoppingBag, ShoppingCart, Menu, X, Mail, PenTool, ChevronRight } from "lucide-react"
+import { useCart } from "../context/CarContext"
 import logo from "../assets/images/Deco_Numeros.png"
 
 const Navbar = () => {
   const [isDrawerOpen, setIsDrawerOpen] = useState(false)
-  //const [scrolled, setScrolled] = useState(false)
   const location = useLocation()
+  const { cartItems } = useCart()
 
   const menuItems = [
     { icon: Home, label: "Inicio", path: "/" },
@@ -19,32 +20,20 @@ const Navbar = () => {
     { icon: ShoppingCart, label: "Carrito", path: "/carrito" },
   ]
 
-  // useEffect(() => {
-  //   const handleScroll = () => {
-  //     setScrolled(window.scrollY > 20)
-  //   }
-
-  //   window.addEventListener("scroll", handleScroll)
-  //   return () => window.removeEventListener("scroll", handleScroll)
-  // }, [])
-
   useEffect(() => {
     setIsDrawerOpen(false)
-  }, [location])
+  }, [])
 
   const navbarClasses = `fixed top-0 left-0 right-0 z-50 transition-all duration-300 bg-black`
+
+  const cartItemCount = cartItems.reduce((total, item) => total + item.cantidad, 0)
 
   return (
     <nav className={navbarClasses}>
       <div className="container mx-auto px-4 py-4 flex justify-between items-center">
         {/* Logo */}
         <Link to="/" className="relative group">
-          <img
-            // src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Deco%20(1)-6YpDDYVoYnIdmXF2hQpQStoZFigWTi.png"
-            src={logo}
-            alt="Deco Números"
-            className="h-14 w-auto"
-          />
+          <img src={logo || "/placeholder.svg"} alt="Deco Números" className="h-14 w-auto" />
           <motion.div
             className="absolute -bottom-1 left-0 w-0 h-0.5 bg-amber-500 group-hover:w-full transition-all duration-300"
             whileHover={{ width: "100%" }}
@@ -67,16 +56,26 @@ const Navbar = () => {
             <motion.div key={index} whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }} className="relative group">
               <Link
                 to={item.path}
-                className={`flex items-center space-x-2 text-white/90 hover:text-white transition-colors duration-300 ${location.pathname === item.path ? "text-amber-400" : ""
-                  }`}
+                className={`flex items-center space-x-2 text-white/90 hover:text-white transition-colors duration-300 ${
+                  location.pathname === item.path ? "text-amber-400" : ""
+                }`}
               >
-                <item.icon size={20} className="group-hover:text-amber-400 transition-colors duration-300" />
+                <div className="relative">
+                  <item.icon size={20} className="group-hover:text-amber-400 transition-colors duration-300" />
+                  {item.label === "Carrito" && cartItemCount > 0 && (
+                    <span className="absolute -top-2 -right-2 bg-amber-500 text-black text-xs font-bold rounded-full w-5 h-5 flex items-center justify-center">
+                      {cartItemCount}
+                    </span>
+                  )}
+                </div>
                 <span className="font-medium">{item.label}</span>
               </Link>
-              <motion.div
-                className="absolute -bottom-1 left-0 w-0 h-0.5 bg-amber-400 group-hover:w-full transition-all duration-300"
-                whileHover={{ width: "100%" }}
-              />
+              {location.pathname === item.path && (
+                <motion.div
+                  className="absolute -bottom-1 left-0 w-full h-0.5 bg-amber-400"
+                  layoutId="navbar-underline"
+                />
+              )}
             </motion.div>
           ))}
         </div>
@@ -102,10 +101,10 @@ const Navbar = () => {
                 className="fixed top-0 left-0 bottom-0 w-50 bg-black shadow-xl md:hidden z-50 overflow-y-auto"
               >
                 <div className="flex flex-col h-full">
-                  <div className="p-6">
+                  <div className="p-6 mt-24">
                     <div className="flex justify-between items-center mb-8">
                       <img
-                        src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Deco%20(1)-6YpDDYVoYnIdmXF2hQpQStoZFigWTi.png"
+                        src={logo || "/placeholder.svg"}
                         alt="Deco Números"
                         className="h-16 w-auto max-w-xs filter invert brightness-0"
                       />
@@ -129,15 +128,23 @@ const Navbar = () => {
                         >
                           <Link
                             to={item.path}
-                            className={`group p-4 flex items-center justify-between rounded-lg text-white/90 hover:text-white hover:bg-white/10 transition-all duration-300 ${location.pathname === item.path ? "bg-white/10 text-amber-400" : ""
-                              }`}
+                            className={`group p-4 flex items-center justify-between rounded-lg text-white/90 hover:text-white hover:bg-white/10 transition-all duration-300 ${
+                              location.pathname === item.path ? "bg-white/10 text-amber-400" : ""
+                            }`}
                             onClick={() => setIsDrawerOpen(false)}
                           >
                             <div className="flex items-center space-x-4">
-                              <item.icon
-                                size={24}
-                                className="group-hover:text-amber-400 transition-colors duration-300"
-                              />
+                              <div className="relative">
+                                <item.icon
+                                  size={24}
+                                  className="group-hover:text-amber-400 transition-colors duration-300"
+                                />
+                                {item.label === "Carrito" && cartItemCount > 0 && (
+                                  <span className="absolute -top-2 -right-2 bg-amber-500 text-black text-xs font-bold rounded-full w-5 h-5 flex items-center justify-center">
+                                    {cartItemCount}
+                                  </span>
+                                )}
+                              </div>
                               <span className="text-xl font-medium">{item.label}</span>
                             </div>
                             <ChevronRight

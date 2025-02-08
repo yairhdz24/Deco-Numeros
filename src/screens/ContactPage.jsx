@@ -111,8 +111,8 @@ const ContactPage = () => {
     },
     {
       icon: Mail,
-      content: "contacto@ejemplo.com",
-      link: "mailto:contacto@ejemplo.com",
+      content: "deconumerosresidencial@gmail.com",
+      link: "mailto:deconumerosresidencial@gmail.com",
     },
     {
       icon: Clock,

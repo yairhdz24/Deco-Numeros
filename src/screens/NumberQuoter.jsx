@@ -1,9 +1,8 @@
-// src/screens/NumberQuoter.jsx
 "use client";
 
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Sun, Moon, Power, ArrowRight, ArrowLeft } from "lucide-react";
+import { Sun, Moon, Power, ArrowRight, ArrowLeft, Ruler } from "lucide-react";
 import { toast, Toaster } from "react-hot-toast";
 import { fontOptions, brandFontMapping } from "../components/Fonts";
 import { numberColors, plateColors } from "../data/colors";
@@ -47,13 +46,12 @@ const NumberQuoter = ({ brandName = "CLASSIC", brandLogo }) => {
   };
 
   const handleAddToCart = () => {
-    // Construye el objeto del producto con la configuración personalizada
     const productConfig = {
-      id: new Date().getTime(), // Genera un ID único
+      id: new Date().getTime(),
       nombre: "Letrero Personalizado",
       precio: totalPrice,
       cantidad: 1,
-      imagen: "", // Puedes agregar una URL o placeholder
+      imagen: "",
       personalizacion: {
         texto: inputText,
         colorNumero: numberColor,
@@ -96,7 +94,6 @@ const NumberQuoter = ({ brandName = "CLASSIC", brandLogo }) => {
 
   const plateStyles = getPlateStyles();
 
-  // Buscar el color seleccionado en todas las secciones
   const selectedNumberColorObj = Object.values(numberColors)
     .flat()
     .find((c) => c.id === numberColor);
@@ -115,15 +112,15 @@ const NumberQuoter = ({ brandName = "CLASSIC", brandLogo }) => {
   return (
     <div className="min-h-screen bg-gradient-to-b from-gray-900 to-gray-800 p-4 md:p-8">
       <Toaster />
-      <div className="max-w-7xl mx-auto">
+      <div className="max-w-7xl mx-auto mt-10">
         <div className="text-center mb-12">
-          {brandLogo && (
+          {/* {brandLogo && (
             <img
               src={brandLogo || "/placeholder.svg"}
               alt={brandName}
               className="h-24 mx-auto mb-4"
             />
-          )}
+          )} */}
           <h1 className="text-4xl md:text-5xl font-bold text-white mb-4">
             {brandName}
           </h1>
@@ -148,9 +145,7 @@ const NumberQuoter = ({ brandName = "CLASSIC", brandLogo }) => {
                   <div
                     className="absolute inset-0 bg-cover bg-center rounded-md"
                     style={{
-                      backgroundImage: `url(${plateColors.find(
-                        (p) => p.id === plateColor
-                      )?.texture})`,
+                      backgroundImage: `url(${plateColors.find((p) => p.id === plateColor)?.texture})`,
                       filter: "brightness(1.1)",
                     }}
                   />
@@ -227,9 +222,7 @@ const NumberQuoter = ({ brandName = "CLASSIC", brandLogo }) => {
 
           <div className="space-y-6">
             <div className="space-y-2">
-              <label className="text-lg font-medium text-white">
-                Tipografía
-              </label>
+              <label className="text-lg font-medium text-white">Tipografía</label>
               <select
                 value={selectedFont}
                 onChange={(e) => setSelectedFont(e.target.value)}
@@ -248,9 +241,7 @@ const NumberQuoter = ({ brandName = "CLASSIC", brandLogo }) => {
             </div>
 
             <div className="space-y-2">
-              <label className="text-lg font-medium text-white">
-                Color del Número
-              </label>
+              <label className="text-lg font-medium text-white">Color del Número</label>
               <button
                 onClick={() => setShowColorModal(true)}
                 className="w-full p-4 text-left bg-gray-800 rounded-xl text-white hover:bg-gray-700 transition-all"
@@ -271,9 +262,7 @@ const NumberQuoter = ({ brandName = "CLASSIC", brandLogo }) => {
             </div>
 
             <div className="space-y-2">
-              <label className="text-lg font-medium text-white">
-                Fondo de la Placa
-              </label>
+              <label className="text-lg font-medium text-white">Fondo de la Placa</label>
               <button
                 onClick={() => setShowPlateModal(true)}
                 className="w-full p-4 text-left bg-gray-800 rounded-xl text-white hover:bg-gray-700 transition-all"
@@ -282,45 +271,38 @@ const NumberQuoter = ({ brandName = "CLASSIC", brandLogo }) => {
                   <div
                     className="w-8 h-8 rounded-lg"
                     style={{
-                      backgroundImage: `url(${plateColors.find(
-                        (p) => p.id === plateColor
-                      )?.texture})`,
+                      backgroundImage: `url(${plateColors.find((p) => p.id === plateColor)?.texture})`,
                       backgroundSize: "cover",
                       backgroundPosition: "center",
                     }}
                   />
-                  <span>
-                    {plateColors.find((p) => p.id === plateColor)?.name}
-                  </span>
+                  <span>{plateColors.find((p) => p.id === plateColor)?.name}</span>
                 </div>
               </button>
             </div>
 
             <div className="space-y-2">
-              <label className="text-lg font-medium text-white">
-                Tamaño
-              </label>
+              <label className="text-lg font-medium text-white">Tamaño</label>
               <div className="grid grid-cols-4 gap-2">
                 {fontConfig.sizes.map((sizeOption) => (
                   <button
                     key={sizeOption.value}
                     onClick={() => setSize(sizeOption.value)}
-                    className={`p-2 rounded-lg text-sm font-medium transition-all ${
+                    className={`p-2 rounded-lg text-sm font-medium transition-all flex items-center justify-center gap-1 ${
                       size === sizeOption.value
                         ? "bg-amber-500 text-gray-900"
                         : "bg-gray-800 text-gray-300 hover:bg-gray-700"
                     }`}
                   >
-                    {sizeOption.label}
+                    <Ruler className="w-4 h-4" />
+                    <span>{sizeOption.label}</span>
                   </button>
                 ))}
               </div>
             </div>
 
             <div className="space-y-2">
-              <label className="text-lg font-medium text-white">
-                Orientación
-              </label>
+              <label className="text-lg font-medium text-white">Orientación</label>
               <div className="flex items-center justify-center bg-gray-800 rounded-xl p-2">
                 <button
                   onClick={() => setOrientation("horizontal")}
