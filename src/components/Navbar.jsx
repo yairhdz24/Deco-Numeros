@@ -4,6 +4,7 @@ import React, { useState, useEffect } from "react"
 import { Link, useLocation } from "react-router-dom"
 import { motion, AnimatePresence } from "framer-motion"
 import { Home, ShoppingBag, ShoppingCart, Menu, X, Mail, PenTool, ChevronRight } from "lucide-react"
+import logo from "../assets/images/Deco_Numeros.png"
 
 const Navbar = () => {
   const [isDrawerOpen, setIsDrawerOpen] = useState(false)
@@ -39,9 +40,10 @@ const Navbar = () => {
         {/* Logo */}
         <Link to="/" className="relative group">
           <img
-            src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Deco%20(1)-6YpDDYVoYnIdmXF2hQpQStoZFigWTi.png"
+            // src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Deco%20(1)-6YpDDYVoYnIdmXF2hQpQStoZFigWTi.png"
+            src={logo}
             alt="Deco Números"
-            className="h-16 w-auto filter invert brightness-0"
+            className="h-14 w-auto"
           />
           <motion.div
             className="absolute -bottom-1 left-0 w-0 h-0.5 bg-amber-500 group-hover:w-full transition-all duration-300"
@@ -65,9 +67,8 @@ const Navbar = () => {
             <motion.div key={index} whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }} className="relative group">
               <Link
                 to={item.path}
-                className={`flex items-center space-x-2 text-white/90 hover:text-white transition-colors duration-300 ${
-                  location.pathname === item.path ? "text-amber-400" : ""
-                }`}
+                className={`flex items-center space-x-2 text-white/90 hover:text-white transition-colors duration-300 ${location.pathname === item.path ? "text-amber-400" : ""
+                  }`}
               >
                 <item.icon size={20} className="group-hover:text-amber-400 transition-colors duration-300" />
                 <span className="font-medium">{item.label}</span>
@@ -128,9 +129,8 @@ const Navbar = () => {
                         >
                           <Link
                             to={item.path}
-                            className={`group p-4 flex items-center justify-between rounded-lg text-white/90 hover:text-white hover:bg-white/10 transition-all duration-300 ${
-                              location.pathname === item.path ? "bg-white/10 text-amber-400" : ""
-                            }`}
+                            className={`group p-4 flex items-center justify-between rounded-lg text-white/90 hover:text-white hover:bg-white/10 transition-all duration-300 ${location.pathname === item.path ? "bg-white/10 text-amber-400" : ""
+                              }`}
                             onClick={() => setIsDrawerOpen(false)}
                           >
                             <div className="flex items-center space-x-4">
