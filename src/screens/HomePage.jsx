@@ -10,12 +10,13 @@ import "swiper/css/pagination"
 import "swiper/css/effect-fade"
 import { ShoppingCart, ArrowRight, ChevronDown, Palette, Shield, Zap, Sun } from "lucide-react"
 import InfiniteBanner from "../components/InfiniteBar"
-import ProductCategories from "./ProductCategories"
+// import ProductCategories from "./ProductCategories"
 import StatsCounter from "../components/StatsCounter"
 import AboutUs from "../components/AboutUs"
 import "../css/hero.css"
 import BrandShowcase from "../components/BrandShowcase"
-import QuienesSomos from "../components/QuienesSomos"
+// import QuienesSomos from "../components/QuienesSomos"
+import ScrollToTop from "../components/ScrollToTop"
 
 const heroSlides = [
   {
@@ -28,7 +29,7 @@ const heroSlides = [
     title: ["DISEÑO ÚNICO, IMPACTO TOTAL"],
     subtitle: ["DALE A TU ESPACIO UN TOQUE EXTRAORDINARIO"],
   },
-  
+
 ]
 
 const featuredProducts = [
@@ -80,7 +81,7 @@ const HomePage = () => {
             disableOnInteraction: false,
           }}
           loop={true}
-          className="h-full hero-swiper"
+          className="h-auto hero-swiper"
         >
           {heroSlides.map((slide, index) => (
             <SwiperSlide key={index}>
@@ -153,7 +154,7 @@ const HomePage = () => {
                             <ShoppingCart className="mr-2 group-hover:translate-x-1 transition-transform" size={20} />
                             <span>Explora nuestro catálogo</span>
                           </span>
-                        </Link> 
+                        </Link>
                       </motion.div>
                     </motion.div>
                   </AnimatePresence>
@@ -175,15 +176,15 @@ const HomePage = () => {
             viewport={{ once: true }}
             className="text-center mb-16"
           >
-             <span className="text-amber-600 font-medium mb-2 block">
-             Nuestros Diseños Destacados
-          </span>
-          <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
-            Descubre la elegancia en cada detalle
-          </h2>
-           <div className="w-24 h-1 bg-gradient-to-r from-amber-400 to-amber-600 mx-auto rounded-full" />
+            <span className="text-amber-600 font-medium mb-2 block">
+              Nuestros Diseños Destacados
+            </span>
+            <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
+              Descubre la elegancia en cada detalle
+            </h2>
+            <div className="w-24 h-1 bg-gradient-to-r from-amber-400 to-amber-600 mx-auto rounded-full" />
             {/* <h2 className="text-4xl md:text-5xl font-bold text-gray-800 mb-4">Nuestros Diseños Destacados</h2>
-            <p className="text-xl text-gray-600">Descubre la elegancia en cada detalle</p> */} 
+            <p className="text-xl text-gray-600">Descubre la elegancia en cada detalle</p> */}
           </motion.div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
@@ -222,12 +223,97 @@ const HomePage = () => {
       </section>
 
       {/* Otras secciones */}
+      <section className="py-20 px-6 bg-gradient-to-b from-gray-900 to-gray-800">
+        <div className="max-w-7xl mx-auto">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="text-center mb-16"
+          >
+            <span className="text-amber-500 font-medium mb-2 block">Ilumina tu Negocio</span>
+            <h2 className="text-4xl md:text-5xl font-bold text-white mb-4">Letreros Luminosos Personalizados</h2>
+            <div className="w-24 h-1 bg-gradient-to-r from-amber-400 to-amber-600 mx-auto rounded-full" />
+          </motion.div>
+
+          <div className="flex flex-col md:flex-row items-center justify-between gap-8">
+            <div className="md:w-1/2">
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                className="text-left"
+              >
+                <p className="text-lg text-gray-300 mb-6">
+                  Dale vida a tus ideas con nuestros letreros luminosos personalizados. Creamos diseños únicos que
+                  destacan tu marca y transforman cualquier espacio. Perfectos para negocios, eventos o decoración.
+                </p>
+                <div className="space-y-4">
+                  <div className="flex items-center gap-3">
+                    <Sun className="text-amber-500 h-6 w-6" />
+                    <span className="text-white">Iluminación LED de alta calidad</span>
+                  </div>
+                  <div className="flex items-center gap-3">
+                    <Palette className="text-amber-500 h-6 w-6" />
+                    <span className="text-white">Diseños totalmente personalizables</span>
+                  </div>
+                  <div className="flex items-center gap-3">
+                    <Shield className="text-amber-500 h-6 w-6" />
+                    <span className="text-white">Materiales premium y duraderos</span>
+                  </div>
+                </div>
+                <Link
+                  to="/personalizar-letrero"
+                  className="inline-flex items-center px-6 py-3 mt-8 border border-transparent text-base font-medium rounded-md text-gray-900 bg-amber-500 hover:bg-amber-400 transition duration-300"
+                >
+                  Personaliza tu Letrero
+                  <ArrowRight className="ml-2 -mr-1 h-5 w-5" />
+                </Link>
+              </motion.div>
+            </div>
+            <div className="md:w-1/2">
+              <motion.div
+                initial={{ opacity: 0, scale: 0.9 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                viewport={{ once: true }}
+                className="grid grid-cols-2 gap-4"
+              >
+                <div className="relative overflow-hidden rounded-lg shadow-xl">
+                  <img
+                    src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/image-DGEQENYgpG0tYZCr9CJwJVbZZB1Da0.png"
+                    alt="Victoria Spa illuminated sign"
+                    className="w-full h-48 object-cover"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent" />
+                </div>
+                <div className="relative overflow-hidden rounded-lg shadow-xl">
+                  <img
+                    src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/image-mT12pdMLOAJJQ5rpmEoZfk2P9FMtTx.png"
+                    alt="Neon astronaut sign"
+                    className="w-full h-48 object-cover"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent" />
+                </div>
+                <div className="relative overflow-hidden rounded-lg shadow-xl col-span-2">
+                  <img
+                    src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/image-IL5ZA5WawmQ4G7nXdrGeJRJR4pMrLU.png"
+                    alt="Medical Versailles illuminated sign"
+                    className="w-full h-48 object-cover"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent" />
+                </div>
+              </motion.div>
+            </div>
+          </div>
+        </div>
+      </section>
       {/* <QuienesSomos /> */}
       <BrandShowcase />
       {/* <ProductCategories /> */}
       <StatsCounter />
       <AboutUs />
-      <InfiniteBanner />
+      {/* <InfiniteBanner /> */}
+      <ScrollToTop />
     </div>
   )
 }

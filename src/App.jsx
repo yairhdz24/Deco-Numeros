@@ -16,6 +16,7 @@ import { CartProvider } from "./context/CarContext";
 // Componente wrapper que extrae el parámetro y pasa el logo (si se tiene) y configura la fuente según la marca
 import { useParams } from "react-router-dom";
 import NumberQuoterBrand from "./screens/NumberQuoter";
+import LetreroPersonalizado from "./screens/LetreroLuz";
 
 const brandLogos = {
   CLASICO:
@@ -57,6 +58,7 @@ function App() {
               <Route path="/carrito" element={<CartPage />} />
               <Route path="/contacto" element={<ContactPage />} />
               <Route path="/cotizar" element={<NumberQuoter />} />
+              <Route path="/personalizar-letrero" element={<LetreroPersonalizado />} />
             </Routes>
           </main>
           <Footer />
