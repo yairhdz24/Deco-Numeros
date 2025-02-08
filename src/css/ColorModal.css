@@ -8,6 +8,18 @@
   font-family: "Arial", sans-serif;
   letter-spacing: 0.05em;
 }
+.gold-preview {
+  background-blend-mode: overlay;
+  background-color: rgba(255, 215, 0, 0.6);
+  color: #ffd700;
+  text-shadow: 0 0 10px rgba(255, 215, 0, 0.8), 0 0 20px rgba(255, 215, 0, 0.6), 0 0 30px rgba(255, 215, 0, 0.4);
+}
+
+.number-preview {
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
 
 /* Custom scrollbar */
 .custom-scrollbar::-webkit-scrollbar {

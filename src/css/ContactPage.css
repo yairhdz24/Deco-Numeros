@@ -1,0 +1,65 @@
+/* Estilos para el mapa */
+.mapboxgl-map {
+    width: 100%;
+    height: 100%;
+  }
+  
+  /* Personalización del popup del mapa */
+  .mapboxgl-popup-content {
+    padding: 15px;
+    border-radius: 8px;
+  }
+  
+  .mapboxgl-popup-close-button {
+    font-size: 16px;
+    color: #666;
+  }
+  
+  /* Animaciones para los elementos del formulario */
+  input,
+  textarea {
+    transition: all 0.2s ease;
+  }
+  
+  input:focus,
+  textarea:focus {
+    transform: translateY(-1px);
+  }
+  
+  /* Estilos para el modo oscuro */
+  @media (prefers-color-scheme: dark) {
+    .mapboxgl-ctrl-attrib a {
+      color: #fff;
+    }
+  }
+  
+  /* Responsive adjustments */
+  @media (max-width: 640px) {
+    .contact-grid {
+      grid-template-columns: 1fr;
+    }
+  
+    .map-container {
+      height: 300px;
+    }
+  }
+  
+  /* Animación del botón de envío */
+  @keyframes gradient {
+    0% {
+      background-position: 0% 50%;
+    }
+    50% {
+      background-position: 100% 50%;
+    }
+    100% {
+      background-position: 0% 50%;
+    }
+  }
+  
+  .submit-button {
+    background-size: 200% 200%;
+    animation: gradient 3s ease infinite;
+  }
+  
+  
