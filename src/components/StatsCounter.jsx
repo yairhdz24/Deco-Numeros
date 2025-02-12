@@ -77,7 +77,7 @@ const Counter = ({ number, duration }) => {
       ref={counterRef}
       initial={{ opacity: 0, scale: 0.5 }}
       animate={controls}
-      className="text-6xl md:text-7xl font-bold text-[#E5A355] tabular-nums"
+      className="text-5xl md:text-6xl font-bold text-[#E5A355] tabular-nums"
     >
       0
     </motion.span>
@@ -145,7 +145,7 @@ const StatsCounter = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: index * 0.2 }}
-              className="flex items-center space-x-4"
+              className="flex items-center space-x-5"
             >
               <motion.div
                 initial={{ scale: 0 }}
@@ -170,4 +170,3 @@ const StatsCounter = () => {
 }
 
 export default StatsCounter
-

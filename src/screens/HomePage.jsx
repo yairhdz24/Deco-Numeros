@@ -1,6 +1,4 @@
-// HomePage.jsx
 "use client"
-import React from "react"
 import { motion, AnimatePresence } from "framer-motion"
 import { Link } from "react-router-dom"
 import { Swiper, SwiperSlide } from "swiper/react"
@@ -8,28 +6,24 @@ import { Pagination, Autoplay, EffectFade } from "swiper/modules"
 import "swiper/css"
 import "swiper/css/pagination"
 import "swiper/css/effect-fade"
-import { ShoppingCart, ArrowRight, ChevronDown, Palette, Shield, Zap, Sun } from "lucide-react"
-import InfiniteBanner from "../components/InfiniteBar"
-// import ProductCategories from "./ProductCategories"
+import { ShoppingCart, ArrowRight, Sun, Palette, Shield, Star } from "lucide-react"
+import BrandShowcase from "../components/BrandShowcase"
 import StatsCounter from "../components/StatsCounter"
 import AboutUs from "../components/AboutUs"
-import "../css/hero.css"
-import BrandShowcase from "../components/BrandShowcase"
-// import QuienesSomos from "../components/QuienesSomos"
 import ScrollToTop from "../components/ScrollToTop"
+import "../css/hero.css"
 
 const heroSlides = [
   {
     image: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c",
-    title: ["INNOVACIÓN QUE TRANSFORMA"],
-    subtitle: ["TECNOLOGÍA Y ESTILO PARA TU VIDA"],
+    title: ["INNOVACIÓN QUE", "TRANSFORMA"],
+    subtitle: ["TECNOLOGÍA Y ESTILO", "PARA TU VIDA"],
   },
   {
     image: "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c",
-    title: ["DISEÑO ÚNICO, IMPACTO TOTAL"],
-    subtitle: ["DALE A TU ESPACIO UN TOQUE EXTRAORDINARIO"],
+    title: ["DISEÑO ÚNICO,", "IMPACTO TOTAL"],
+    subtitle: ["DALE A TU ESPACIO UN", "TOQUE EXTRAORDINARIO"],
   },
-
 ]
 
 const featuredProducts = [
@@ -39,6 +33,7 @@ const featuredProducts = [
     image: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/03-722lzbLaBLhyrU5L47MUEAgqmLha6U.png",
     description: "Acabado metálico sobre panel de piedra",
     style: "Moderno",
+    rating: 4.8,
   },
   {
     id: 2,
@@ -46,13 +41,15 @@ const featuredProducts = [
     image: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/07-KoKUkc6iT5DsIyFzGQOtyEasnyYyPy.png",
     description: "Diseño vertical elegante",
     style: "Elegante",
+    rating: 4.9,
   },
   {
     id: 3,
     name: "Número 94 Transparente",
     image: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/02-yB9i450qaB0ezOqpIWWyvhpZTC3rGy.png",
-    description: "Acrílico transparente con números metálicos",
+    description: "Cristal con números metálicos",
     style: "Contemporáneo",
+    rating: 4.7,
   },
   {
     id: 4,
@@ -60,6 +57,7 @@ const featuredProducts = [
     image: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/01-aWsu7hXeDjCEvdLM31CM06HB6YSL7a.png",
     description: "Panel negro con números metálicos",
     style: "Premium",
+    rating: 5.0,
   },
 ]
 
@@ -67,7 +65,7 @@ const HomePage = () => {
   return (
     <div className="bg-[#F5F5F0]">
       {/* Hero Section */}
-      <section className="relative h-screen">
+      <section className="relative h-[85vh] sm:h-screen">
         <Swiper
           modules={[Pagination, Autoplay, EffectFade]}
           effect="fade"
@@ -81,11 +79,11 @@ const HomePage = () => {
             disableOnInteraction: false,
           }}
           loop={true}
-          className="h-auto hero-swiper"
+          className="h-full hero-swiper"
         >
           {heroSlides.map((slide, index) => (
             <SwiperSlide key={index}>
-              <div className="relative h-screen w-full overflow-hidden">
+              <div className="relative h-full w-full overflow-hidden">
                 <motion.div
                   initial={{ scale: 1 }}
                   animate={{ scale: 1.1 }}
@@ -95,11 +93,9 @@ const HomePage = () => {
                     backgroundImage: `url(${slide.image})`,
                   }}
                 />
-
                 <div className="absolute inset-0 bg-gradient-to-b from-black/70 via-black/40 to-black/70" />
                 <div className="absolute inset-0 bg-gradient-to-r from-black/40 via-transparent to-black/40" />
-
-                <div className="absolute inset-0 flex flex-col items-center justify-center px-6 text-center">
+                <div className="absolute inset-0 flex flex-col items-center justify-center px-4 sm:px-6 lg:px-8 text-center">
                   <AnimatePresence mode="wait">
                     <motion.div
                       key={index}
@@ -107,16 +103,16 @@ const HomePage = () => {
                       animate={{ opacity: 1, y: 0 }}
                       exit={{ opacity: 0, y: -30 }}
                       transition={{ duration: 0.8 }}
-                      className="space-y-8"
+                      className="space-y-4 sm:space-y-6 lg:space-y-8"
                     >
-                      <div className="space-y-4">
+                      <div className="space-y-2 sm:space-y-4">
                         {slide.title.map((line, i) => (
                           <motion.h1
                             key={i}
                             initial={{ opacity: 0, y: 50 }}
                             animate={{ opacity: 1, y: 0 }}
                             transition={{ delay: i * 0.2 + 0.5 }}
-                            className="text-4xl sm:text-5xl md:text-7xl font-bold text-white tracking-wide hero-text"
+                            className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold text-white tracking-wide hero-text"
                           >
                             {line}
                           </motion.h1>
@@ -127,33 +123,24 @@ const HomePage = () => {
                             initial={{ opacity: 0, y: 30 }}
                             animate={{ opacity: 1, y: 0 }}
                             transition={{ delay: i * 0.2 + 1 }}
-                            className="text-lg sm:text-xl md:text-3xl text-white/90 font-light tracking-wide"
+                            className="text-lg sm:text-xl md:text-2xl lg:text-3xl text-white/90 font-light tracking-wide"
                           >
                             {line}
                           </motion.p>
                         ))}
                       </div>
-
                       <motion.div
                         initial={{ opacity: 0, y: 20 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ delay: 1.5 }}
-                        className="flex flex-col sm:flex-row justify-center gap-4 sm:gap-6 mt-8"
+                        className="flex justify-center mt-6 sm:mt-8 lg:mt-10"
                       >
-                        {/* {/* <Link to="/personalizar" className="hero-button primary group">
-                          <span className="absolute inset-0 bg-gradient-to-r from-amber-400 to-amber-600 rounded-lg" />
-                          <span className="relative flex items-center justify-center">
-                            <Palette className="mr-2" size={20} />
-                            <span className="relative z-10">Personaliza el tuyo</span>
-                          </span>
-                        </Link> */}
-
-                        <Link to="/catalogo" className="hero-button secondary group">
-                          <span className="absolute inset-0 border-2 border-white rounded-lg group-hover:border-amber-400 transition-colors" />
-                          <span className="relative flex items-center justify-center">
-                            <ShoppingCart className="mr-2 group-hover:translate-x-1 transition-transform" size={20} />
-                            <span>Explora nuestro catálogo</span>
-                          </span>
+                        <Link
+                          to="/catalogo"
+                          className="hero-button secondary group inline-flex items-center justify-center px-6 sm:px-8 py-3 sm:py-4 text-base sm:text-lg lg:text-xl font-medium rounded-lg text-white bg-amber-600 hover:bg-amber-700 transition-all duration-300 transform hover:scale-105"
+                        >
+                          <ShoppingCart className="mr-2 group-hover:translate-x-1 transition-transform" size={24} />
+                          <span>Explora nuestro catálogo</span>
                         </Link>
                       </motion.div>
                     </motion.div>
@@ -163,31 +150,28 @@ const HomePage = () => {
             </SwiperSlide>
           ))}
         </Swiper>
-
-        <div className="custom-pagination" />
+        <div className="custom-pagination absolute bottom-6 sm:bottom-8 left-0 right-0 flex justify-center space-x-2 sm:space-x-3" />
       </section>
 
       {/* Featured Products */}
-      <section className="py-20 px-6">
+      <section className="py-16 sm:py-20 lg:py-24 px-4 sm:px-6 lg:px-8">
         <div className="max-w-7xl mx-auto">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="text-center mb-16"
+            className="text-center mb-12 sm:mb-16 lg:mb-20"
           >
-            <span className="text-amber-600 font-medium mb-2 block">
+            <span className="text-amber-600 font-medium mb-2 block text-sm sm:text-base lg:text-lg">
               Nuestros Diseños Destacados
             </span>
-            <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
-              Descubre la elegancia en cada detalle
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-900 mb-4 sm:mb-6">
+              Elegancia en cada detalle
             </h2>
-            <div className="w-24 h-1 bg-gradient-to-r from-amber-400 to-amber-600 mx-auto rounded-full" />
-            {/* <h2 className="text-4xl md:text-5xl font-bold text-gray-800 mb-4">Nuestros Diseños Destacados</h2>
-            <p className="text-xl text-gray-600">Descubre la elegancia en cada detalle</p> */}
+            <div className="w-24 sm:w-32 lg:w-40 h-1 bg-gradient-to-r from-amber-400 to-amber-600 mx-auto rounded-full" />
           </motion.div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+          <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8 lg:gap-10">
             {featuredProducts.map((product, index) => (
               <motion.div
                 key={product.id}
@@ -197,92 +181,113 @@ const HomePage = () => {
                 transition={{ delay: index * 0.1 }}
                 className="group"
               >
-                <div className="relative overflow-hidden rounded-xl bg-white shadow-lg">
+                <div className="relative overflow-hidden rounded-xl bg-white shadow-lg transition-all duration-300 group-hover:shadow-xl">
                   <div className="aspect-square overflow-hidden">
                     <motion.img
                       src={product.image}
                       alt={product.name}
-                      className="w-full h-full object-cover"
-                      whileHover={{ scale: 1.05 }}
-                      transition={{ duration: 0.4 }}
+                      className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
                     />
                   </div>
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-                  <div className="absolute bottom-0 left-0 right-0 p-6 text-white transform translate-y-full group-hover:translate-y-0 transition-transform duration-300">
-                    <h3 className="text-xl font-bold mb-2">{product.name}</h3>
-                    <p className="text-sm text-gray-200">{product.description}</p>
-                    <div className="flex items-center mt-4">
-                      <span className="text-sm font-medium text-amber-400">Estilo {product.style}</span>
+                  <div className="p-4 sm:p-5 lg:p-6">
+                    <h3 className="text-lg sm:text-xl lg:text-2xl font-semibold text-gray-900 mb-2 truncate">
+                      {product.name}
+                    </h3>
+                    <p className="text-sm sm:text-base text-gray-600 mb-3 line-clamp-2">{product.description}</p>
+                    <div className="flex items-center justify-between">
+                      <span className="text-sm font-medium text-amber-600">Estilo {product.style}</span>
+                      <div className="flex items-center">
+                        <Star className="w-4 h-4 text-yellow-400 mr-1" />
+                        <span className="text-sm font-medium text-gray-700">{product.rating}</span>
+                      </div>
                     </div>
                   </div>
                 </div>
               </motion.div>
             ))}
           </div>
+          <div className="mt-12 sm:mt-16 lg:mt-20 text-center">
+            <Link
+              to="/catalogo"
+              className="inline-flex items-center justify-center px-6 sm:px-8 py-3 sm:py-4 border border-transparent text-base sm:text-lg lg:text-xl font-medium rounded-lg text-white bg-amber-600 hover:bg-amber-700 transition-all duration-300 transform hover:scale-105"
+            >
+              Ver todo el catálogo
+              <ArrowRight className="ml-2" size={24} />
+            </Link>
+          </div>
         </div>
       </section>
 
-      {/* Otras secciones */}
-      <section className="py-20 px-6 bg-gradient-to-b from-gray-900 to-gray-800">
+      {/* Contact Us Section */}
+      <AboutUs />
+
+      {/* Letreros Luminosos Section */}
+      <section className="py-16 sm:py-20 lg:py-24 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-gray-900 to-gray-800">
         <div className="max-w-7xl mx-auto">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="text-center mb-16"
+            className="text-center mb-12 sm:mb-16 lg:mb-20"
           >
-            <span className="text-amber-500 font-medium mb-2 block">Ilumina tu Negocio</span>
-            <h2 className="text-4xl md:text-5xl font-bold text-white mb-4">Letreros Luminosos Personalizados</h2>
-            <div className="w-24 h-1 bg-gradient-to-r from-amber-400 to-amber-600 mx-auto rounded-full" />
+            <span className="text-amber-500 font-medium mb-2 block text-sm sm:text-base lg:text-lg">
+              Ilumina tu Negocio
+            </span>
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white mb-4 sm:mb-6">
+              Letreros Luminosos Personalizados
+            </h2>
+            <div className="w-24 sm:w-32 lg:w-40 h-1 bg-gradient-to-r from-amber-400 to-amber-600 mx-auto rounded-full" />
           </motion.div>
 
-          <div className="flex flex-col md:flex-row items-center justify-between gap-8">
-            <div className="md:w-1/2">
+          <div className="flex flex-col lg:flex-row items-center justify-between gap-12 lg:gap-16">
+            <div className="lg:w-1/2">
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 className="text-left"
               >
-                <p className="text-lg text-gray-300 mb-6">
+                <p className="text-lg sm:text-xl lg:text-2xl text-gray-300 mb-6 sm:mb-8">
                   Dale vida a tus ideas con nuestros letreros luminosos personalizados. Creamos diseños únicos que
-                  destacan tu marca y transforman cualquier espacio. Perfectos para negocios, eventos o decoración.
+                  destacan tu marca y transforman cualquier espacio.
                 </p>
-                <div className="space-y-4">
-                  <div className="flex items-center gap-3">
-                    <Sun className="text-amber-500 h-6 w-6" />
-                    <span className="text-white">Iluminación LED de alta calidad</span>
+                <div className="space-y-4 sm:space-y-6">
+                  <div className="flex items-center gap-4">
+                    <Sun className="text-amber-500 h-8 w-8 sm:h-10 sm:w-10" />
+                    <span className="text-white text-base sm:text-lg lg:text-xl">Iluminación LED de alta calidad</span>
                   </div>
-                  <div className="flex items-center gap-3">
-                    <Palette className="text-amber-500 h-6 w-6" />
-                    <span className="text-white">Diseños totalmente personalizables</span>
+                  <div className="flex items-center gap-4">
+                    <Palette className="text-amber-500 h-8 w-8 sm:h-10 sm:w-10" />
+                    <span className="text-white text-base sm:text-lg lg:text-xl">
+                      Diseños totalmente personalizables
+                    </span>
                   </div>
-                  <div className="flex items-center gap-3">
-                    <Shield className="text-amber-500 h-6 w-6" />
-                    <span className="text-white">Materiales premium y duraderos</span>
+                  <div className="flex items-center gap-4">
+                    <Shield className="text-amber-500 h-8 w-8 sm:h-10 sm:w-10" />
+                    <span className="text-white text-base sm:text-lg lg:text-xl">Materiales premium y duraderos</span>
                   </div>
                 </div>
                 <Link
                   to="/personalizar-letrero"
-                  className="inline-flex items-center px-6 py-3 mt-8 border border-transparent text-base font-medium rounded-md text-gray-900 bg-amber-500 hover:bg-amber-400 transition duration-300"
+                  className="inline-flex items-center px-6 sm:px-8 py-3 sm:py-4 mt-8 sm:mt-10 border border-transparent text-base sm:text-lg lg:text-xl font-medium rounded-lg text-gray-900 bg-amber-500 hover:bg-amber-400 transition-all duration-300 transform hover:scale-105"
                 >
                   Personaliza tu Letrero
-                  <ArrowRight className="ml-2 -mr-1 h-5 w-5" />
+                  <ArrowRight className="ml-2 -mr-1 h-5 w-5 sm:h-6 sm:w-6" />
                 </Link>
               </motion.div>
             </div>
-            <div className="md:w-1/2">
+            <div className="lg:w-1/2 mt-8 lg:mt-0">
               <motion.div
                 initial={{ opacity: 0, scale: 0.9 }}
                 whileInView={{ opacity: 1, scale: 1 }}
                 viewport={{ once: true }}
-                className="grid grid-cols-2 gap-4"
+                className="grid grid-cols-2 gap-4 sm:gap-6"
               >
                 <div className="relative overflow-hidden rounded-lg shadow-xl">
                   <img
                     src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/image-DGEQENYgpG0tYZCr9CJwJVbZZB1Da0.png"
                     alt="Victoria Spa illuminated sign"
-                    className="w-full h-48 object-cover"
+                    className="w-full h-40 sm:h-48 lg:h-56 object-cover"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent" />
                 </div>
@@ -290,7 +295,7 @@ const HomePage = () => {
                   <img
                     src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/image-mT12pdMLOAJJQ5rpmEoZfk2P9FMtTx.png"
                     alt="Neon astronaut sign"
-                    className="w-full h-48 object-cover"
+                    className="w-full h-40 sm:h-48 lg:h-56 object-cover"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent" />
                 </div>
@@ -298,7 +303,7 @@ const HomePage = () => {
                   <img
                     src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/image-IL5ZA5WawmQ4G7nXdrGeJRJR4pMrLU.png"
                     alt="Medical Versailles illuminated sign"
-                    className="w-full h-48 object-cover"
+                    className="w-full h-40 sm:h-48 lg:h-56 object-cover"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent" />
                 </div>
@@ -307,15 +312,14 @@ const HomePage = () => {
           </div>
         </div>
       </section>
-      {/* <QuienesSomos /> */}
+
+      
       <BrandShowcase />
-      {/* <ProductCategories /> */}
       <StatsCounter />
-      <AboutUs />
-      {/* <InfiniteBanner /> */}
       <ScrollToTop />
     </div>
   )
 }
 
 export default HomePage
+
