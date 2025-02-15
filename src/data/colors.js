@@ -1,13 +1,13 @@
 export const numberColors = {
     stock: [
       {
-        id: "dorado-cepillado",
-        name: "Dorado Cepillado",
-        available: false,
+        id: "acero-cepillado",
+        name: "Acabado Acero Cepillado",
+        available: true,
         texture:
-          "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/dorado-cepillado.jpg-wZkfqjVVBj8U6tH6fPau8tOGTPuzC8.jpeg",
+          "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/espejo-semi-mate.jpg-FeA2mpcJZ9HDbdhy3Z3WrsBUxScXVO.jpeg",
         preview:
-          "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/dorado-cepillado.jpg-wZkfqjVVBj8U6tH6fPau8tOGTPuzC8.jpeg",
+          "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/espejo-semi-mate.jpg-FeA2mpcJZ9HDbdhy3Z3WrsBUxScXVO.jpeg",
       },
       {
         id: "plata-mate",
@@ -19,15 +19,6 @@ export const numberColors = {
           "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/plata-mate.jpg-luFMeNWTqC4gEKM3g7aIQXAZZvU2OG.jpeg",
       },
       {
-        id: "acero-cepillado",
-        name: "Acabado Acero Cepillado",
-        available: true,
-        texture:
-          "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/espejo-semi-mate.jpg-FeA2mpcJZ9HDbdhy3Z3WrsBUxScXVO.jpeg",
-        preview:
-          "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/espejo-semi-mate.jpg-FeA2mpcJZ9HDbdhy3Z3WrsBUxScXVO.jpeg",
-      },
-      {
         id: "negro-mate",
         name: "Negro Mate",
         available: true,
@@ -35,6 +26,15 @@ export const numberColors = {
           "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/negro-mate.jpg-njECJUxMICWxb4GVohHjEG9hvaus7m.jpeg",
         preview:
           "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/negro-mate.jpg-njECJUxMICWxb4GVohHjEG9hvaus7m.jpeg",
+      },
+      {
+        id: "dorado-cepillado",
+        name: "Dorado Cepillado",
+        available: false,
+        texture:
+          "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/dorado-cepillado.jpg-wZkfqjVVBj8U6tH6fPau8tOGTPuzC8.jpeg",
+        preview:
+          "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/dorado-cepillado.jpg-wZkfqjVVBj8U6tH6fPau8tOGTPuzC8.jpeg",
       },
       {
         id: "plata-espejo",

@@ -15,7 +15,7 @@ const ColorModal = ({ isOpen, onClose, colors, selectedColor, onSelectColor }) =
       </div>
       <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4">
         {items.map((color) => {
-          // Forzamos que si el color es "dorado" se deshabilite
+          // Se deshabilita "dorado"
           const isGolden = color.name.toLowerCase() === "dorado";
           return (
             <motion.div
@@ -25,7 +25,7 @@ const ColorModal = ({ isOpen, onClose, colors, selectedColor, onSelectColor }) =
               exit={{ opacity: 0, y: -20 }}
               className={`
                 relative overflow-hidden rounded-xl bg-gray-800/50 backdrop-blur-sm
-                ${(color.available === false || isGolden) && type === "stock" ? "opacity-50" : ""}
+                ${(color.available === false || isGolden) ? "opacity-50" : ""}
                 ${selectedColor === color.id ? "ring-2 ring-amber-500" : ""}
                 transition-all duration-300 hover:bg-gray-800/70
               `}
@@ -42,12 +42,8 @@ const ColorModal = ({ isOpen, onClose, colors, selectedColor, onSelectColor }) =
               >
                 <div className="flex flex-col items-center justify-center py-6">
                   <div
-                    className={`text-7xl font-bold number-preview ${
-                      color.name.toLowerCase() === "dorado" ? "gold-preview" : ""
-                    }`}
-                    style={{
-                      backgroundImage: `url(${color.texture})`,
-                    }}
+                    className={`text-7xl font-bold number-preview ${isGolden ? "gold-preview" : ""}`}
+                    style={{ backgroundImage: `url(${color.texture})` }}
                   >
                     <span className="number-outline">1234</span>
                   </div>

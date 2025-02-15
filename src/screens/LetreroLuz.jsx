@@ -69,38 +69,67 @@ const LetreroPersonalizado = () => {
     e.preventDefault()
     setIsSubmitting(true)
 
-    let mensaje = `¡Hola! 👋\n\n*Cotización de Letrero con Luz Personalizado:*\n\n`
+    // Detección básica del dispositivo
+    const isMobile = /Mobi|Android/i.test(navigator.userAgent)
 
-    mensaje += `📝 *Tipo de Letrero:* ${
-      formData.tipoLetrero === "texto" ? "Letrero con Texto" : "Letrero con Logo/Diseño"
-    }\n`
-
-    if (formData.tipoLetrero === "texto") {
-      mensaje += `✍️ *Texto:* ${formData.textoLetrero}\n`
+    let mensaje = ""
+    if (isMobile) {
+      // Plantilla para móviles con emojis
+      mensaje += `¡Hola! 👋\n\n*Cotización de Letrero con Luz Personalizado:*\n\n`
+      mensaje += `📝 *Tipo de Letrero:* ${
+        formData.tipoLetrero === "texto" ? "Letrero con Texto" : "Letrero con Logo/Diseño"
+      }\n`
+      if (formData.tipoLetrero === "texto") {
+        mensaje += `✍️ *Texto:* ${formData.textoLetrero}\n`
+      } else {
+        mensaje += `🎨 *Nota:* Por favor, envía tu logo o diseño como imagen en el siguiente mensaje.\n`
+      }
+      mensaje += `💡 *Tipo de Iluminación:* ${
+        tiposLuz.find((t) => t.value === formData.tipoLuz)?.label
+      }\n`
+      if (formData.tipoLuz === "neon") {
+        mensaje += `🎨 *Color de Neón:* ${formData.colorLuz}\n`
+      }
+      mensaje += `📏 *Tamaño:* ${tamanos.find((t) => t.value === formData.tamano)?.label}\n`
+      if (formData.mensaje) {
+        mensaje += `\n💬 *Mensaje Adicional:*\n${formData.mensaje}\n`
+      }
+      if (formData.tipoLetrero === "logo") {
+        mensaje += `\n📸 *Importante:* Por favor, envía la imagen de tu logo o diseño en el siguiente mensaje para poder procesar tu cotización.\n`
+      }
+      mensaje += `\n¡Gracias! ✨ Esperamos crear algo increíble juntos.`
     } else {
-      mensaje += `🎨 *Nota:* Por favor, envía tu logo o diseño como imagen en el siguiente mensaje.\n`
+      // Plantilla para escritorio sin emojis
+      mensaje += `¡Hola!\n\nCotización de Letrero con Luz Personalizado:\n\n`
+      mensaje += `Tipo de Letrero: ${
+        formData.tipoLetrero === "texto" ? "Letrero con Texto" : "Letrero con Logo/Diseño"
+      }\n`
+      if (formData.tipoLetrero === "texto") {
+        mensaje += `Texto: ${formData.textoLetrero}\n`
+      } else {
+        mensaje += `Nota: Por favor, envía tu logo o diseño como imagen en el siguiente mensaje.\n`
+      }
+      mensaje += `Tipo de Iluminación: ${
+        tiposLuz.find((t) => t.value === formData.tipoLuz)?.label
+      }\n`
+      if (formData.tipoLuz === "neon") {
+        mensaje += `Color de Neón: ${formData.colorLuz}\n`
+      }
+      mensaje += `Tamaño: ${tamanos.find((t) => t.value === formData.tamano)?.label}\n`
+      if (formData.mensaje) {
+        mensaje += `\nMensaje Adicional:\n${formData.mensaje}\n`
+      }
+      if (formData.tipoLetrero === "logo") {
+        mensaje += `\nImportante: Por favor, envía la imagen de tu logo o diseño en el siguiente mensaje para poder procesar tu cotización.\n`
+      }
+      mensaje += `\n¡Gracias! Esperamos crear algo increíble juntos.`
     }
-
-    mensaje += `💡 *Tipo de Iluminación:* ${tiposLuz.find((t) => t.value === formData.tipoLuz)?.label}\n`
-
-    if (formData.tipoLuz === "neon") {
-      mensaje += `🎨 *Color de Neón:* ${formData.colorLuz}\n`
-    }
-
-    mensaje += `📏 *Tamaño:* ${tamanos.find((t) => t.value === formData.tamano)?.label}\n`
-
-    if (formData.mensaje) {
-      mensaje += `\n💬 *Mensaje Adicional:*\n${formData.mensaje}\n`
-    }
-
-    if (formData.tipoLetrero === "logo") {
-      mensaje += `\n📸 *Importante:* Por favor, envía la imagen de tu logo o diseño en el siguiente mensaje para poder procesar tu cotización.\n`
-    }
-
-    mensaje += `\n¡Gracias! ✨ Esperamos crear algo increíble juntos.`
 
     const numeroWhatsApp = "5213317659254"
-    const enlaceWhatsApp = `https://wa.me/${numeroWhatsApp}?text=${encodeURIComponent(mensaje)}`
+    // Usar esquema whatsapp:// en móviles o https://wa.me/ para escritorio
+    const enlaceWhatsApp = isMobile
+      ? `whatsapp://send?phone=${numeroWhatsApp}&text=${encodeURIComponent(mensaje)}`
+      : `https://wa.me/${numeroWhatsApp}?text=${encodeURIComponent(mensaje)}`
 
     window.open(enlaceWhatsApp, "_blank")
     setIsSubmitting(false)
@@ -133,8 +162,7 @@ const LetreroPersonalizado = () => {
         <CheckCircle className="w-16 h-16 text-green-500 mx-auto mb-4" />
         <h2 className="text-2xl font-bold text-white mb-4">¡Cotización Enviada!</h2>
         <p className="text-gray-300 mb-6">
-          Gracias por tu interés en nuestros letreros luminosos personalizados. Hemos recibido tu solicitud de
-          cotización.
+          Gracias por tu interés en nuestros letreros luminosos personalizados. Hemos recibido tu solicitud de cotización.
         </p>
         <div className="bg-amber-500/10 border border-amber-500 text-amber-500 p-4 rounded-xl">
           <h3 className="text-lg font-semibold mb-2">Próximos pasos:</h3>
@@ -167,8 +195,7 @@ const LetreroPersonalizado = () => {
           </div>
           <div className="w-24 h-1 bg-gradient-to-r from-amber-400 to-amber-600 mx-auto rounded-full mb-4" />
           <p className="text-gray-300 max-w-xl mx-auto">
-            Diseña un letrero que refleje la esencia de tu marca. Personaliza cada detalle y recibe una cotización al
-            instante.
+            Diseña un letrero que refleje la esencia de tu marca. Personaliza cada detalle y recibe una cotización al instante.
           </p>
         </motion.div>
 
@@ -298,9 +325,7 @@ const LetreroPersonalizado = () => {
                             }`}
                           >
                             <Icon
-                              className={`w-8 h-8 mb-2 ${
-                                formData.tipoLuz === tipo.value ? "text-amber-500" : "text-gray-400"
-                              }`}
+                              className={`w-8 h-8 mb-2 ${formData.tipoLuz === tipo.value ? "text-amber-500" : "text-gray-400"}`}
                             />
                             <h3 className="text-white font-medium mb-1">{tipo.label}</h3>
                             <p className="text-sm text-gray-400">{tipo.description}</p>
@@ -316,8 +341,7 @@ const LetreroPersonalizado = () => {
                     <div className="bg-green-500/10 border border-green-500 text-green-500 p-4 rounded-xl mt-4">
                       <h3 className="text-lg font-semibold mb-2">¡Dato interesante!</h3>
                       <p>
-                        El neón LED es nuestra opción más brillante y llamativa, perfecta para destacar en cualquier
-                        espacio.
+                        El neón LED es nuestra opción más brillante y llamativa, perfecta para destacar en cualquier espacio.
                       </p>
                     </div>
                     {formData.tipoLuz === "neon" && (
@@ -358,9 +382,7 @@ const LetreroPersonalizado = () => {
                           }`}
                         >
                           <Ruler
-                            className={`w-6 h-6 mb-2 mx-auto ${
-                              formData.tamano === tam.value ? "text-amber-500" : "text-gray-400"
-                            }`}
+                            className={`w-6 h-6 mb-2 mx-auto ${formData.tamano === tam.value ? "text-amber-500" : "text-gray-400"}`}
                           />
                           <div className="text-white font-medium">{tam.label}</div>
                           <div className="text-sm text-amber-500 mt-1">${tam.price}</div>
@@ -472,4 +494,3 @@ const LetreroPersonalizado = () => {
 }
 
 export default LetreroPersonalizado
-

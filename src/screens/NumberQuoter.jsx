@@ -15,9 +15,18 @@ const NumberQuoter = ({ brandName = "CLASSIC", brandLogo }) => {
   const fontId = brandFontMapping[brandName] || "arial";
   const fontConfig = fontOptions.find((f) => f.id === fontId) || fontOptions[0];
 
+  // Filtramos los colores de stock para que no se seleccione "dorado" por defecto.
+  const nonGoldenColors = numberColors.stock.filter(
+    (c) => c.name.toLowerCase() !== "dorado"
+  );
+  // Usamos el primer color que NO sea "dorado", o si no hay, usamos el primero.
+  const defaultNumberColorObj = nonGoldenColors.length > 0 
+    ? nonGoldenColors[0] 
+    : numberColors.stock[0];
+
   const [inputText, setInputText] = useState("");
   const [size, setSize] = useState(fontConfig.sizes[0].value);
-  const [numberColor, setNumberColor] = useState(numberColors.stock[0].id);
+  const [numberColor, setNumberColor] = useState(defaultNumberColorObj.id);
   const [plateColor, setPlateColor] = useState(plateColors[0].id);
   const [orientation, setOrientation] = useState("horizontal");
   const [lighting, setLighting] = useState("sin-luz");
@@ -145,7 +154,9 @@ const NumberQuoter = ({ brandName = "CLASSIC", brandLogo }) => {
                   <div
                     className="absolute inset-0 bg-cover bg-center rounded-md"
                     style={{
-                      backgroundImage: `url(${plateColors.find((p) => p.id === plateColor)?.texture})`,
+                      backgroundImage: `url(${
+                        plateColors.find((p) => p.id === plateColor)?.texture
+                      })`,
                       filter: "brightness(1.1)",
                     }}
                   />
@@ -241,7 +252,9 @@ const NumberQuoter = ({ brandName = "CLASSIC", brandLogo }) => {
             </div>
 
             <div className="space-y-2">
-              <label className="text-lg font-medium text-white">Color del Número</label>
+              <label className="text-lg font-medium text-white">
+                Color del Número
+              </label>
               <button
                 onClick={() => setShowColorModal(true)}
                 className="w-full p-4 text-left bg-gray-800 rounded-xl text-white hover:bg-gray-700 transition-all"
