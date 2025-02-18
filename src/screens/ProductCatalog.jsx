@@ -1,109 +1,125 @@
+"use client"
+
 import { useState, useEffect } from "react"
 import { Link } from "react-router-dom"
 import { motion, AnimatePresence } from "framer-motion"
 import { Search, Tag, Filter, X, Ruler } from "lucide-react"
 
-// Datos de productos (mantén los datos existentes)
+// Importa las imágenes
+import imagen_1 from "../assets/images/deconumeros_products/imagen_1.jpg"
+import imagen_2 from "../assets/images/deconumeros_products/imagen_23.jpg"
+import imagen_3 from "../assets/images/deconumeros_products/imagen_3.jpg"
+import imagen_4 from "../assets/images/deconumeros_products/imagen_4.jpg"
+import imagen_5 from "../assets/images/deconumeros_products/imagen_21.jpg"
+import imagen_6 from "../assets/images/deconumeros_products/imagen_6.jpg"
+import imagen_7 from "../assets/images/deconumeros_products/imagen_7.jpg"
+import imagen_8 from "../assets/images/deconumeros_products/imagen_8.jpg"
+import imagen_9 from "../assets/images/deconumeros_products/imagen_9.jpg"
+import imagen_10 from "../assets/images/deconumeros_products/imagen_10.jpg"
+
+// Datos de productos (sin cambios)
 const productosData = [
   {
     id: 1,
-    nombre: "Letrero Familiar Rústico",
-    descripcion: "Elegante letrero de madera para entrada de casa",
-    precio: 89.99,
-    // imagen: rustico,
-      // "https://images.unsplash.com/photo-1618220179428-22790b461013?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80",
-    categorias: ["Madera", "Rústico"],
-    material: "Madera de Roble",
+    nombre: "Números Modernos Plateados",
+    descripcion:
+      "Números individuales en acabado plateado brillante, diseño minimalista sin placa. Ideal para fachadas modernas.",
+    precio: 1395,
+    imagen: imagen_1,
+    categorias: ["Sin Placa", "Plateado"],
+    material: "Acabado Plateado",
+    opciones: ["Luz Cálida", "Luz Neutra", "Sin Luz"],
   },
   {
     id: 2,
-    nombre: "Número de Casa Moderno",
-    descripcion: "Números metálicos contemporáneos con iluminación LED",
-    precio: 129.99,
-    imagen:
-      "https://images.unsplash.com/photo-1518707399486-6d702a84ff00?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80",
-    categorias: ["Metal", "Moderno"],
-    material: "Acero Inoxidable",
+    nombre: "Números Elegantes Negro Mate",
+    descripcion:
+      "Números en elegante acabado negro mate, diseño sobrio y contemporáneo. Perfecto para exteriores modernos.",
+    precio: 1295,
+    imagen: imagen_2,
+    categorias: ["Sin Placa", "Negro Mate"],
+    material: "Acabado Negro Mate",
+    opciones: ["Luz Cálida", "Luz Neutra", "Sin Luz"],
   },
   {
     id: 3,
-    nombre: "Letrero de Bienvenida Vintage",
-    descripcion: "Cartel de bienvenida con diseño retro",
-    precio: 69.99,
-    imagen:
-      "https://images.unsplash.com/photo-1531685250784-7569952593d2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80",
-    categorias: ["Madera", "Vintage"],
-    material: "Madera Reciclada",
+    nombre: "Números Espejo Plateados",
+    descripcion: "Set de tres números con acabado espejo plateado. Efecto reflectante de alta calidad.",
+    precio: 1195,
+    imagen: imagen_3,
+    categorias: ["Sin Placa", "Espejo"],
+    material: "Acabado Espejo",
+    opciones: ["Luz Cálida", "Luz Neutra", "Sin Luz"],
   },
   {
     id: 4,
-    nombre: "Placa de Dirección Personalizada",
-    descripcion: "Placa elegante con tu dirección grabada",
-    precio: 49.99,
-    imagen:
-      "https://images.unsplash.com/photo-1586023492125-27b2c045efd7?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80",
-    categorias: ["Metal", "Personalizado"],
-    material: "Latón Pulido",
+    nombre: "Números Negro Mate Premium",
+    descripcion: "Conjunto de tres números en acabado negro mate, diseño elegante y contemporáneo.",
+    precio: 1095,
+    imagen: imagen_4,
+    categorias: ["Sin Placa", "Negro Mate"],
+    material: "Acabado Negro Mate",
+    opciones: ["Luz Cálida", "Luz Neutra", "Sin Luz"],
   },
   {
     id: 5,
-    nombre: "Letrero Neón Personalizado",
-    descripcion: "Letrero luminoso neón para interiores",
-    precio: 199.99,
-    imagen:
-      "https://images.unsplash.com/photo-1519608425089-7f3bfa6f6bb8?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80",
-    categorias: ["Neón", "Moderno"],
-    material: "Tubo de Neón y Acrílico",
+    nombre: "Placa LED Moderna",
+    descripcion: "Placa negra elegante con números integrados y sistema de iluminación LED cálida incluido.",
+    precio: 1495,
+    imagen: imagen_5,
+    categorias: ["Con Placa", "LED"],
+    material: "Placa Negra Premium",
+    opciones: ["Luz Cálida", "Luz Neutra"],
   },
   {
     id: 6,
-    nombre: "Letrero de Madera Tallada",
-    descripcion: "Letrero artesanal con diseño tallado a mano",
-    precio: 159.99,
-    imagen:
-      "https://images.unsplash.com/photo-1614898983622-f20044c60b30?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80",
-    categorias: ["Madera", "Artesanal"],
-    material: "Madera de Cedro",
+    nombre: "Números Plateados Deluxe",
+    descripcion: "Números en acabado plateado premium, diseño sofisticado para entradas elegantes.",
+    precio: 1195,
+    imagen: imagen_6,
+    categorias: ["Sin Placa", "Plateado"],
+    material: "Acabado Plateado",
+    opciones: ["Luz Cálida", "Luz Neutra", "Sin Luz"],
   },
   {
     id: 7,
-    nombre: "Placa Conmemorativa de Bronce",
-    descripcion: "Placa elegante para conmemorar eventos especiales",
-    precio: 299.99,
-    imagen:
-      "https://images.unsplash.com/photo-1577083552431-6e5fd01621c7?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80",
-    categorias: ["Metal", "Elegante"],
-    material: "Bronce Fundido",
+    nombre: "Números Plateados Premium",
+    descripcion: "Números con acabado plateado de alta calidad, diseño moderno y elegante.",
+    precio: 1195,
+    imagen: imagen_7,
+    categorias: ["Sin Placa", "Plateado"],
+    material: "Acabado Plateado",
+    opciones: ["Luz Cálida", "Luz Neutra", "Sin Luz"],
   },
   {
     id: 8,
-    nombre: "Letrero LED Programable",
-    descripcion: "Pantalla LED para mensajes personalizables",
-    precio: 249.99,
-    imagen:
-      "https://images.unsplash.com/photo-1563203369-26f2e4a5ccf7?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80",
-    categorias: ["LED", "Moderno"],
-    material: "Aluminio y LED",
+    nombre: "Números Especiales Plateados",
+    descripcion: "Diseño especial con acabado plateado único, perfecto para casas contemporáneas.",
+    precio: 1195,
+    imagen: imagen_8,
+    categorias: ["Sin Placa", "Plateado"],
+    material: "Acabado Plateado",
+    opciones: ["Luz Cálida", "Luz Neutra", "Sin Luz"],
   },
   {
     id: 9,
-    nombre: "Letrero de Pizarra Vintage",
-    descripcion: "Pizarra decorativa para mensajes cambiantes",
-    precio: 79.99,
-    imagen:
-      "https://images.unsplash.com/photo-1581344895000-ee10f3cc0c3d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80",
-    categorias: ["Pizarra", "Vintage"],
-    material: "Madera y Pizarra",
+    nombre: "Placa LED Contemporánea",
+    descripcion: "Placa moderna con números integrados e iluminación LED, acabado premium.",
+    precio: 1295,
+    imagen: imagen_9,
+    categorias: ["Con Placa", "LED"],
+    material: "Placa Premium",
+    opciones: ["Luz Cálida", "Luz Neutra"],
   },
   {
     id: 10,
-    nombre: "Letrero de Mosaico Personalizado",
-    descripcion: "Letrero artístico hecho con mosaicos de colores",
-    precio: 189.99,
-    imagen:
-      "https://images.unsplash.com/photo-1616486788371-62d930495c44?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80",
-    categorias: ["Mosaico", "Artesanal"],
-    material: "Cerámica y Vidrio",
+    nombre: "Números Plateados Exclusivos",
+    descripcion: "Números individuales en acabado plateado exclusivo, diseño limpio sin placa.",
+    precio: 1195,
+    imagen: imagen_10,
+    categorias: ["Sin Placa", "Plateado"],
+    material: "Acabado Plateado",
+    opciones: ["Luz Cálida", "Luz Neutra", "Sin Luz"],
   },
 ]
 
@@ -111,15 +127,27 @@ const ProductCatalog = () => {
   const [productos, setProductos] = useState(productosData)
   const [filtros, setFiltros] = useState({
     categoria: "",
-    precioMinimo: 0,
-    precioMaximo: 500,
+    precioRango: "",
   })
   const [terminoBusqueda, setTerminoBusqueda] = useState("")
   const [mostrarFiltros, setMostrarFiltros] = useState(false)
 
+  const rangosPrecios = [
+    { label: "Todos los precios", value: "" },
+    { label: "$1000 - $1200", value: "1000-1200" },
+    { label: "$1201 - $1300", value: "1201-1300" },
+    { label: "$1301 - $1400", value: "1301-1400" },
+    { label: "Más de $1400", value: "1401-9999" },
+  ]
+
   useEffect(() => {
     const productosFiltrados = productosData.filter((producto) => {
-      const cumplePrecio = producto.precio >= filtros.precioMinimo && producto.precio <= filtros.precioMaximo
+      const cumplePrecio = filtros.precioRango
+        ? (() => {
+            const [min, max] = filtros.precioRango.split("-").map(Number)
+            return producto.precio >= min && producto.precio <= max
+          })()
+        : true
       const cumpleCategoria = !filtros.categoria || producto.categorias.includes(filtros.categoria)
       const cumpleBusqueda =
         producto.nombre.toLowerCase().includes(terminoBusqueda.toLowerCase()) ||
@@ -130,9 +158,11 @@ const ProductCatalog = () => {
   }, [filtros, terminoBusqueda])
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-gray-900 to-gray-800 p-4 md:p-8 ">
+    <div className="min-h-screen bg-gradient-to-b from-gray-900 to-gray-800 p-4 md:p-8">
       <div className="max-w-7xl mx-auto mt-10">
-        <h1 className="text-4xl md:text-5xl font-bold text-amber-400 mb-4 text-center">Nuestros Letreros Exclusivos</h1>
+        <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-amber-400 mb-4 text-center">
+          Nuestros Letreros Exclusivos
+        </h1>
 
         {/* Barra de búsqueda y botón de filtros */}
         <div className="flex justify-center mb-8">
@@ -181,28 +211,30 @@ const ProductCatalog = () => {
                     className="w-full bg-gray-700 border border-gray-600 text-white rounded-md px-3 py-2 focus:outline-none focus:border-amber-500 focus:ring-2 focus:ring-amber-500"
                   >
                     <option value="">Todas las Categorías</option>
-                    <option value="Madera">Madera</option>
-                    <option value="Metal">Metal</option>
-                    <option value="Rústico">Rústico</option>
-                    <option value="Moderno">Moderno</option>
-                    <option value="Neón">Neón</option>
-                    <option value="LED">LED</option>
-                    <option value="Artesanal">Artesanal</option>
+                    <option value="Sin Placa">Sin Placa</option>
+                    <option value="Con Placa">Con Placa</option>
+                    <option value="LED">Con LED</option>
+                    <option value="Plateado">Plateado</option>
+                    <option value="Negro Mate">Negro Mate</option>
+                    <option value="Espejo">Espejo</option>
                   </select>
                 </div>
                 <div>
-                  <label htmlFor="precio" className="block text-sm font-medium text-gray-300 mb-1">
-                    Precio Máximo: ${filtros.precioMaximo}
+                  <label htmlFor="precioRango" className="block text-sm font-medium text-gray-300 mb-1">
+                    Rango de Precio
                   </label>
-                  <input
-                    type="range"
-                    id="precio"
-                    min="0"
-                    max="500"
-                    value={filtros.precioMaximo}
-                    onChange={(e) => setFiltros({ ...filtros, precioMaximo: Number(e.target.value) })}
-                    className="w-full"
-                  />
+                  <select
+                    id="precioRango"
+                    value={filtros.precioRango}
+                    onChange={(e) => setFiltros({ ...filtros, precioRango: e.target.value })}
+                    className="w-full bg-gray-700 border border-gray-600 text-white rounded-md px-3 py-2 focus:outline-none focus:border-amber-500 focus:ring-2 focus:ring-amber-500"
+                  >
+                    {rangosPrecios.map((rango) => (
+                      <option key={rango.value} value={rango.value}>
+                        {rango.label}
+                      </option>
+                    ))}
+                  </select>
                 </div>
               </div>
             </motion.div>
@@ -223,7 +255,7 @@ const ProductCatalog = () => {
               },
             },
           }}
-          className="grid md:grid-cols-2 lg:grid-cols-3 gap-8"
+          className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6"
         >
           {productos.map((producto) => (
             <motion.div
@@ -233,48 +265,50 @@ const ProductCatalog = () => {
                 visible: { opacity: 1, y: 0 },
               }}
               whileHover={{ scale: 1.03 }}
-              className="bg-gray-800 rounded-xl shadow-md overflow-hidden transform transition duration-300 hover:shadow-lg"
+              className="bg-gray-800 rounded-xl shadow-md overflow-hidden transform transition duration-300 hover:shadow-lg flex flex-col"
             >
               <div className="relative">
                 <img
                   src={producto.imagen || "/placeholder.svg"}
                   alt={producto.nombre}
-                  className="w-full h-64 object-cover"
+                  className="w-full h-48 sm:h-56 md:h-64 object-cover"
                 />
-                <div className="absolute bottom-0 left-0 right-0 bg-black bg-opacity-50 text-white px-4 py-2">
-                  <span className="text-2xl font-bold">${producto.precio.toFixed(2)}</span>
+                <div className="absolute bottom-0 left-0 right-0 bg-black bg-opacity-50 text-white px-2 py-1">
+                  <span className="text-base sm:text-lg md:text-xl font-bold">${producto.precio.toFixed(2)}</span>
                 </div>
               </div>
 
-              <div className="p-6">
-                <h2 className="text-xl font-semibold mb-2 text-white">{producto.nombre}</h2>
-                <p className="text-gray-400 mb-4 text-sm">{producto.descripcion}</p>
+              <div className="p-3 sm:p-4 flex flex-col flex-grow">
+                <h2 className="text-sm sm:text-base md:text-lg font-semibold mb-1 sm:mb-2 text-white line-clamp-2">
+                  {producto.nombre}
+                </h2>
+                <p className="text-gray-400 mb-2 sm:mb-3 text-xs sm:text-sm flex-grow line-clamp-3">
+                  {producto.descripcion}
+                </p>
 
-                <div className="flex items-center mb-4">
-                  <Tag className="text-amber-500 mr-2" size={18} />
-                  <span className="text-sm font-medium text-amber-500">{producto.material}</span>
+                <div className="flex items-center mb-2 sm:mb-3">
+                  <Tag className="text-amber-500 mr-1 sm:mr-2" size={14} />
+                  <span className="text-xs sm:text-sm font-medium text-amber-500">{producto.material}</span>
                 </div>
 
-                <div className="flex justify-between items-center">
-                  <div className="flex flex-wrap gap-2">
-                    {producto.categorias.map((categoria, index) => (
-                      <span
-                        key={index}
-                        className="bg-gray-700 text-amber-500 text-xs font-semibold px-2.5 py-0.5 rounded"
-                      >
-                        {categoria}
-                      </span>
-                    ))}
-                  </div>
-
-                  <Link
-                    to="/personalizar"
-                    className="bg-amber-500 hover:bg-amber-600 text-gray-900 px-4 py-2 rounded-full flex items-center transition duration-300"
-                  >
-                    <Ruler className="mr-2" size={18} />
-                    Personalizar
-                  </Link>
+                <div className="flex flex-wrap gap-1 sm:gap-2 mb-3">
+                  {producto.categorias.map((categoria, index) => (
+                    <span
+                      key={index}
+                      className="bg-gray-700 text-amber-500 text-xs font-semibold px-1.5 py-0.5 rounded"
+                    >
+                      {categoria}
+                    </span>
+                  ))}
                 </div>
+
+                <Link
+                  to="/personalizar"
+                  className="bg-amber-500 hover:bg-amber-600 text-gray-900 px-3 py-1.5 rounded-full flex items-center justify-center transition duration-300 text-xs sm:text-sm font-medium w-full"
+                >
+                  <Ruler className="mr-1 sm:mr-2" size={14} />
+                  Personalizar
+                </Link>
               </div>
             </motion.div>
           ))}
@@ -287,8 +321,8 @@ const ProductCatalog = () => {
             transition={{ duration: 0.5 }}
             className="text-center py-16 text-white"
           >
-            <p className="text-2xl font-semibold">No se encontraron productos</p>
-            <p className="mt-2">Intenta ajustar tus filtros o términos de búsqueda</p>
+            <p className="text-xl sm:text-2xl font-semibold">No se encontraron productos</p>
+            <p className="mt-2 text-sm sm:text-base">Intenta ajustar tus filtros o términos de búsqueda</p>
           </motion.div>
         )}
       </div>

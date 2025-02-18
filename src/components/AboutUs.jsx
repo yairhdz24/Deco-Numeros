@@ -2,6 +2,7 @@
 import { motion } from "framer-motion"
 import { Home, Building2, Palette, Laptop } from "lucide-react"
 import { Link } from "react-router-dom"
+import Fondo from "../assets/images/deconumeros_products/imagen_19.jpg" // Asegúrate de que la extensión del archivo sea correcta
 
 const services = [
   {
@@ -85,11 +86,12 @@ const AboutUs = () => {
             >
               <div className="bg-white/5 backdrop-blur-sm rounded-lg p-4 sm:p-6 hover:bg-white/10 transition-all duration-300 h-full flex flex-col justify-between border border-white/10 hover:border-amber-500/50">
                 <div>
+                  {/* Transición de los íconos más rápida */}
                   <motion.div
                     initial={{ scale: 0, rotate: -180 }}
                     whileInView={{ scale: 1, rotate: 0 }}
                     viewport={{ once: true }}
-                    transition={{ delay: index * 0.2 + 0.4, type: "spring", stiffness: 200, damping: 10 }}
+                    transition={{ delay: index * 0.1 + 0.2, type: "tween", duration: 0.3, ease: "easeOut" }}
                     className="w-12 h-12 sm:w-16 sm:h-16 rounded-full bg-gradient-to-br from-amber-400 to-amber-600 text-white flex items-center justify-center mb-3 sm:mb-4 mx-auto group-hover:scale-110 transition-transform duration-300"
                   >
                     {service.icon}
@@ -123,4 +125,3 @@ const AboutUs = () => {
 }
 
 export default AboutUs
-

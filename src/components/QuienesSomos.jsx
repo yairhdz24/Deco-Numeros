@@ -1,6 +1,5 @@
 "use client"
 
-import { motion } from "framer-motion"
 import { Shield, Building2, ArrowRight, Star, Lightbulb, Truck, PenToolIcon as Tool, ThumbsUp } from "lucide-react"
 import { useNavigate } from "react-router-dom"
 
@@ -44,12 +43,14 @@ const QuienesSomos = () => {
     {
       icon: Tool,
       title: "Materiales de Alta Gama",
-      description: "Fabricados en aluminio o acero, resistentes a cualquier clima. Aptos para interior y exterior.",
+      description:
+        "Fabricados en aluminio o acero, resistentes a cualquier clima. Aptos para interior y exterior.",
     },
     {
       icon: ThumbsUp,
       title: "Durabilidad Comprobada",
-      description: "Productos con más de 25 años en óptimas condiciones. Calidad que perdura en el tiempo.",
+      description:
+        "Productos con más de 25 años en óptimas condiciones. Calidad que perdura en el tiempo.",
     },
   ]
 
@@ -57,52 +58,34 @@ const QuienesSomos = () => {
     <section className="py-24 bg-gradient-to-b from-gray-900 to-black text-white overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          className="text-center mb-16"
-        >
+        <div className="text-center mb-16">
           <div className="w-20 h-20 mx-auto mb-6 rounded-full bg-gradient-to-r from-amber-400 to-amber-600 flex items-center justify-center">
             <Star className="w-10 h-10 text-white" />
           </div>
           <span className="text-amber-400 font-medium mb-2 block text-lg">QUIÉNES SOMOS</span>
           <h2 className="text-4xl md:text-5xl font-bold mb-4">Expertos en Señalización</h2>
           <div className="w-32 h-1 bg-gradient-to-r from-amber-400 to-amber-600 mx-auto rounded-full" />
-        </motion.div>
+        </div>
 
         {/* Features Grid */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-20">
           {features.map((feature, index) => (
-            <motion.div
-              key={index}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: index * 0.2 }}
-              className="relative group"
-            >
-              <div className="h-full bg-gray-800/50 backdrop-blur-sm rounded-xl p-8 hover:bg-gray-800/70 transition-all duration-300 shadow-lg">
+            <div key={index} className="relative">
+              <div className="h-full bg-gray-800/50 backdrop-blur-sm rounded-xl p-8 shadow-lg">
                 <div className="w-16 h-16 rounded-full bg-gradient-to-br from-amber-400 to-amber-600 flex items-center justify-center mb-6">
                   <feature.icon className="w-8 h-8 text-white" />
                 </div>
-
-                <h3 className="text-xl font-bold mb-4 text-white group-hover:text-amber-400 transition-colors duration-300">
+                <h3 className="text-xl font-bold mb-4 text-white">
                   {feature.title}
                 </h3>
                 <p className="text-gray-300 leading-relaxed">{feature.description}</p>
               </div>
-            </motion.div>
+            </div>
           ))}
         </div>
 
         {/* Guarantee Section */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          className="mb-20"
-        >
+        <div className="mb-20">
           <h2 className="text-3xl font-bold mb-8 text-center text-white">NUESTRA GARANTÍA Y SERVICIO</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             {guaranteeInfo.map((item, index) => (
@@ -119,27 +102,21 @@ const QuienesSomos = () => {
               </div>
             ))}
           </div>
-        </motion.div>
+        </div>
 
         {/* CTA Section */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          className="text-center"
-        >
+        <div className="text-center">
           <button
             onClick={() => navigate("/personalizar")}
-            className="group inline-flex items-center justify-center px-8 py-4 text-lg font-medium text-white bg-gradient-to-r from-amber-500 to-amber-600 rounded-full hover:from-amber-600 hover:to-amber-700 transition-all duration-300 transform hover:scale-105 shadow-lg"
+            className="inline-flex items-center justify-center px-8 py-4 text-lg font-medium text-white bg-gradient-to-r from-amber-500 to-amber-600 rounded-full shadow-lg"
           >
             Cotiza tu Letrero Ahora
-            <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform duration-300" />
+            <ArrowRight className="ml-2 w-5 h-5" />
           </button>
-        </motion.div>
+        </div>
       </div>
     </section>
   )
 }
 
 export default QuienesSomos
-

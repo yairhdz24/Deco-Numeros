@@ -12,6 +12,13 @@ import StatsCounter from "../components/StatsCounter"
 import AboutUs from "../components/AboutUs"
 import ScrollToTop from "../components/ScrollToTop"
 import "../css/hero.css"
+import image_1 from "../assets/images/deconumeros_products/imagen_38.jpg"
+import image_2 from "../assets/images/deconumeros_products/imagen_25.jpg"
+import image_3 from "../assets/images/deconumeros_products/imagen_50.jpg"
+import image_19 from "../assets/images/deconumeros_products/imagen_19.jpg"
+import image_4 from "../assets/images/deconumeros_products/imagen_27.jpg"
+import image_5 from "../assets/images/deconumeros_products/imagen_26.jpg"
+import image_6 from "../assets/images/deconumeros_products/imagen_1.jpg"
 
 const heroSlides = [
   {
@@ -29,37 +36,38 @@ const heroSlides = [
 const featuredProducts = [
   {
     id: 1,
-    name: "Número Moderno D15",
-    image: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/03-722lzbLaBLhyrU5L47MUEAgqmLha6U.png",
-    description: "Acabado metálico sobre panel de piedra",
+    name: "Letrero Empresarial Moderno",
+    image: image_4,
+    description: "Letras negras con acabado mate sobre una pared beige, ideal para interiores elegantes.",
     style: "Moderno",
     rating: 4.8,
   },
   {
     id: 2,
-    name: "Letrero Vertical Ochenta",
-    image: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/07-KoKUkc6iT5DsIyFzGQOtyEasnyYyPy.png",
-    description: "Diseño vertical elegante",
+    name: "Letrero Residencial Minimalista",
+    image: image_19,
+    description: "Letras metálicas en una fachada moderna, perfectas para casas con diseño contemporáneo.",
     style: "Elegante",
     rating: 4.9,
   },
   {
     id: 3,
-    name: "Número 94 Transparente",
-    image: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/02-yB9i450qaB0ezOqpIWWyvhpZTC3rGy.png",
-    description: "Cristal con números metálicos",
+    name: "Letrero Comercial Luminoso",
+    image: image_5,
+    description: "Letras iluminadas con luz LED, destacando en entornos nocturnos y comerciales.",
     style: "Contemporáneo",
     rating: 4.7,
   },
   {
     id: 4,
-    name: "Número 23 Premium",
-    image: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/01-aWsu7hXeDjCEvdLM31CM06HB6YSL7a.png",
-    description: "Panel negro con números metálicos",
+    name: "Número Metálico Residencial",
+    image: image_6,
+    description: "Números metálicos montados sobre un muro de piedra, brindando un toque sofisticado.",
     style: "Premium",
     rating: 5.0,
   },
-]
+];
+
 
 const HomePage = () => {
   return (
@@ -75,7 +83,7 @@ const HomePage = () => {
             renderBullet: (index, className) => `<span class="${className}"></span>`,
           }}
           autoplay={{
-            delay: 8000,
+            delay: 7000,
             disableOnInteraction: false,
           }}
           loop={true}
@@ -171,7 +179,7 @@ const HomePage = () => {
             <div className="w-24 sm:w-32 lg:w-40 h-1 bg-gradient-to-r from-amber-400 to-amber-600 mx-auto rounded-full" />
           </motion.div>
 
-          <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8 lg:gap-10">
+          <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 lg:gap-8">
             {featuredProducts.map((product, index) => (
               <motion.div
                 key={product.id}
@@ -179,9 +187,9 @@ const HomePage = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: index * 0.1 }}
-                className="group"
+                className="group h-full"
               >
-                <div className="relative overflow-hidden rounded-xl bg-white shadow-lg transition-all duration-300 group-hover:shadow-xl">
+                <div className="relative overflow-hidden rounded-xl bg-white shadow-lg transition-all duration-300 group-hover:shadow-xl h-full flex flex-col">
                   <div className="aspect-square overflow-hidden">
                     <motion.img
                       src={product.image}
@@ -189,12 +197,10 @@ const HomePage = () => {
                       className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
                     />
                   </div>
-                  <div className="p-4 sm:p-5 lg:p-6">
-                    <h3 className="text-lg sm:text-xl lg:text-2xl font-semibold text-gray-900 mb-2 truncate">
-                      {product.name}
-                    </h3>
-                    <p className="text-sm sm:text-base text-gray-600 mb-3 line-clamp-2">{product.description}</p>
-                    <div className="flex items-center justify-between">
+                  <div className="p-4 flex flex-col flex-grow">
+                    <h3 className="text-lg font-semibold text-gray-900 mb-2 line-clamp-2">{product.name}</h3>
+                    <p className="text-sm text-gray-600 mb-3 line-clamp-3 flex-grow">{product.description}</p>
+                    <div className="flex items-center justify-between mt-auto">
                       <span className="text-sm font-medium text-amber-600">Estilo {product.style}</span>
                       <div className="flex items-center">
                         <Star className="w-4 h-4 text-yellow-400 mr-1" />
@@ -285,7 +291,8 @@ const HomePage = () => {
               >
                 <div className="relative overflow-hidden rounded-lg shadow-xl">
                   <img
-                    src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/image-DGEQENYgpG0tYZCr9CJwJVbZZB1Da0.png"
+                    src={image_2}
+                    // src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/image-DGEQENYgpG0tYZCr9CJwJVbZZB1Da0.png"
                     alt="Victoria Spa illuminated sign"
                     className="w-full h-40 sm:h-48 lg:h-56 object-cover"
                   />
@@ -293,7 +300,8 @@ const HomePage = () => {
                 </div>
                 <div className="relative overflow-hidden rounded-lg shadow-xl">
                   <img
-                    src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/image-mT12pdMLOAJJQ5rpmEoZfk2P9FMtTx.png"
+                    // src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/image-mT12pdMLOAJJQ5rpmEoZfk2P9FMtTx.png"
+                    src={image_3}
                     alt="Neon astronaut sign"
                     className="w-full h-40 sm:h-48 lg:h-56 object-cover"
                   />
@@ -301,7 +309,8 @@ const HomePage = () => {
                 </div>
                 <div className="relative overflow-hidden rounded-lg shadow-xl col-span-2">
                   <img
-                    src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/image-IL5ZA5WawmQ4G7nXdrGeJRJR4pMrLU.png"
+                    src={image_1}
+                    // src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/image-IL5ZA5WawmQ4G7nXdrGeJRJR4pMrLU.png"
                     alt="Medical Versailles illuminated sign"
                     className="w-full h-40 sm:h-48 lg:h-56 object-cover"
                   />
@@ -313,7 +322,6 @@ const HomePage = () => {
         </div>
       </section>
 
-      
       <BrandShowcase />
       <StatsCounter />
       <ScrollToTop />

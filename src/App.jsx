@@ -1,22 +1,21 @@
 // src/App.js
-import React from "react";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import React, { useEffect } from "react";
+import { BrowserRouter as Router, Routes, Route, useLocation } from "react-router-dom";
 import { Toaster } from "react-hot-toast";
 import Navbar from "./components/Navbar";
 import HomePage from "./screens/HomePage";
 import ProductCatalog from "./screens/ProductCatalog";
 import ProductDetail from "./screens/ProductDetail";
-// import CustomSignPage from "./screens/CustomSignPage";
 import CartPage from "./screens/CartPage";
 import ContactPage from "./screens/ContactPage";
 import NumberQuoter from "./screens/NumberQuoter";
+import LetreroPersonalizado from "./screens/LetreroLuz";
 import Footer from "./components/Footer";
 import { CartProvider } from "./context/CarContext";
 
-// Componente wrapper que extrae el parámetro y pasa el logo (si se tiene) y configura la fuente según la marca
+// Componente wrapper para NumberQuoter con marca
 import { useParams } from "react-router-dom";
 import NumberQuoterBrand from "./screens/NumberQuoter";
-import LetreroPersonalizado from "./screens/LetreroLuz";
 
 const brandLogos = {
   CLASICO:
@@ -37,10 +36,20 @@ const NumberQuoterBrandWrapper = () => {
   return <NumberQuoterBrand brandName={brandKey} brandLogo={logo} />;
 };
 
+// Componente interno que reinicia el scroll
+const ScrollReset = () => {
+  const location = useLocation();
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [location]);
+  return null;
+};
+
 function App() {
   return (
     <CartProvider>
       <Router>
+        <ScrollReset />
         <div className="flex flex-col min-h-screen">
           <Navbar />
           <Toaster position="top-right" />
@@ -48,11 +57,7 @@ function App() {
             <Routes>
               <Route path="/" element={<HomePage />} />
               <Route path="/catalogo" element={<ProductCatalog />} />
-              {/* Ruta de personalización; brandName se usa para buscar la configuración */}
-              <Route
-                path="/customize/:brandName"
-                element={<NumberQuoterBrandWrapper />}
-              />
+              <Route path="/customize/:brandName" element={<NumberQuoterBrandWrapper />} />
               <Route path="/producto/:id" element={<ProductDetail />} />
               <Route path="/personalizar" element={<NumberQuoter />} />
               <Route path="/carrito" element={<CartPage />} />

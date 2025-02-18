@@ -101,7 +101,7 @@ const Navbar = () => {
                 className="fixed top-0 left-0 bottom-0 w-50 bg-black shadow-xl md:hidden z-50 overflow-y-auto"
               >
                 <div className="flex flex-col h-full">
-                  <div className="p-6 mt-24">
+                  <div className="p-6">
                     <div className="flex justify-between items-center mb-8">
                       <img
                         src={logo || "/placeholder.svg"}
