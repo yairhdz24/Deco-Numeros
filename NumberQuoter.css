@@ -110,7 +110,7 @@
   background-position: center;
   -webkit-background-clip: text;
   background-clip: text;
-  color: transparent;
+  /* color: transparent; */
   font-family: "Arial", sans-serif;
   letter-spacing: 0.05em;
   filter: brightness(1.2);       /* Aumenta el brillo para que la textura luzca más viva */
